@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0d0d0d;
+  color: #ffcc00;
+  font-family: "VT323", monospace;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.crt-container {
+  width: 90vw;
+  height: 90vh;
+  border: 15px solid #222;
+  border-radius: 20px;
+  background: #111;
+  position: relative;
+  box-shadow:
+    inset 0 0 50px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(255, 204, 0, 0.1);
+  overflow: hidden;
+}
+
+.crt-container::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  z-index: 2;
+  background-size:
+    100% 2px,
+    3px 100%;
+  pointer-events: none;
+}
+
+.crt-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 40%,
+    rgba(50, 50, 50, 0.8) 100%
+  );
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: inset 0 0 100px rgba(255, 204, 0, 0.15);
+}
+
+.cli-container {
+  position: relative;
+  z-index: 5;
+  padding: 40px;
+  height: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  text-shadow:
+    2px 0 2px rgba(255, 0, 0, 0.6),
+    -2px 0 2px rgba(0, 0, 255, 0.6),
+    0 0 8px rgba(255, 204, 0, 0.8);
+  font-size: 1.5rem;
+}
+
+#console-output {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+#console-output::-webkit-scrollbar {
+  display: none;
+}
+
+#console-output {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+.prompt-symbol {
+  margin-right: 10px;
+  color: #ffcc00;
+}
+
+input#cli-input {
+  background: transparent;
+  border: none;
+  color: #ffcc00;
+  font-family: "VT323", monospace;
+  font-size: 1.5rem;
+  width: 100%;
+  outline: none;
+  text-shadow:
+    2px 0 2px rgba(255, 0, 0, 0.6),
+    -2px 0 2px rgba(0, 0, 255, 0.6),
+    0 0 8px rgba(255, 204, 0, 0.8);
+}
+
+.cli-history {
+  color: #cccccc;
+  margin-bottom: 10px;
+  text-shadow: 0 0 5px rgba(200, 200, 200, 0.5);
+}
+
+.sys-msg {
+  color: #ffcc00;
+  margin-bottom: 20px;
+  animation: text-flicker 0.1s infinite;
+}
+
+.ai-response {
+  color: #ff3333;
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.8);
+  margin: 15px 0;
+  animation: text-shake 0.2s infinite;
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.screen-tear {
+  animation: glitch-anim-2 0.5s infinite;
+}

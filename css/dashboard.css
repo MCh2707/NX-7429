@@ -1,0 +1,116 @@
+:root {
+  --bg-color: #000000;
+  --term-green: #00ff00;
+  --term-dim: #004d00;
+  --term-red: #ff0000;
+  --term-white: #00ff00;
+  --glow-green: 0 0 5px rgba(0, 255, 0, 0.4), 0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 100, 0, 0.05) 2px,
+    rgba(0, 100, 0, 0.05) 4px
+  );
+}
+
+.dash-sidebar {
+  background: rgba(0, 20, 0, 0.9) !important;
+  border-right: 1px solid #004d00 !important;
+}
+
+.dash-sidebar a {
+  color: #00dd00 !important;
+  border-bottom: 1px solid #003300 !important;
+}
+
+.dash-sidebar a:hover,
+.dash-sidebar a.active {
+  background: rgba(230, 184, 0, 0.1) !important;
+  color: var(--term-green) !important;
+  border-bottom: 1px solid var(--term-green) !important;
+}
+
+.dash-topbar {
+  background: rgba(15, 0, 20, 0.9) !important;
+  border-bottom: 1px solid #4d004d !important;
+}
+
+.dash-widget {
+  border: 1px solid #4d004d !important;
+  background: rgba(20, 0, 30, 0.6) !important;
+  box-shadow: inset 0 0 20px rgba(77, 0, 77, 0.2) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-widget h3 {
+  color: var(--term-green) !important;
+  border-bottom: 1px solid #4d004d !important;
+}
+
+.threat-text {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--term-red);
+  font-size: 1.5rem;
+  font-weight: bold;
+  opacity: 0;
+  transition:
+    bottom 0.2s,
+    opacity 0.2s;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.dash-widget:hover .threat-text {
+  bottom: 50%;
+  opacity: 0.8;
+  animation: glitch-skew 0.2s infinite;
+}
+
+.dash-widget:hover > *:not(.threat-text) {
+  opacity: 0.1;
+  filter: blur(2px);
+}
+
+.blood-drip {
+  position: fixed;
+  top: 0;
+  width: 2px;
+  background: var(--term-red);
+  opacity: 0.5;
+  z-index: 9999;
+  pointer-events: none;
+  animation: drip 10s infinite;
+}
+
+@keyframes drip {
+  0% {
+    height: 0;
+    top: 0;
+    opacity: 0.8;
+  }
+
+  50% {
+    height: 20vh;
+    opacity: 0.4;
+  }
+
+  100% {
+    height: 100vh;
+    top: 100vh;
+    opacity: 0;
+  }
+}
+
+.dash-widget li {
+  border-bottom: 1px solid #330033 !important;
+}

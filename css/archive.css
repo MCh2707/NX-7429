@@ -1,0 +1,179 @@
+body {
+  background-color: #020800;
+  color: #bedc5f;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.archive-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #0b2800 0%, #000000 90%);
+  box-shadow: inset 0 0 100px rgba(125, 255, 0, 0.18);
+  animation: pulse-bg 4s infinite alternate;
+}
+
+@keyframes pulse-bg {
+  0% {
+    box-shadow: inset 0 0 50px rgba(255, 204, 0, 0.1);
+  }
+
+  100% {
+    box-shadow: inset 0 0 150px rgba(255, 204, 0, 0.4);
+  }
+}
+
+.archive-sidebar {
+  width: 300px;
+  background: rgba(0, 20, 0, 0.95);
+  border-right: 2px solid #40732c;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.archive-header {
+  padding: 20px;
+  border-bottom: 3px solid #7abf3c;
+  background: #062200;
+}
+
+.folder-group {
+  margin-bottom: 10px;
+}
+
+.folder-title {
+  padding: 10px 20px;
+  color: #bedc5f;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  background: #0a1a00;
+  border-bottom: 1px solid #3a6b1f;
+  border-top: 1px solid #3a6b1f;
+}
+
+.file-link {
+  display: block;
+  padding: 10px 20px 10px 30px;
+  color: #cbe576;
+  border-bottom: 1px solid #102508;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: "Courier New", monospace;
+  font-size: 0.85rem;
+  background: #041300;
+}
+
+.file-link:hover,
+.file-link.active {
+  background: #1b4400;
+  color: #e7f7a6;
+  border-left: 5px solid #96c44d;
+  padding-left: 25px;
+  text-shadow: 0 0 10px #96c44d;
+  animation: glitch-skew 0.3s infinite;
+}
+
+.archive-main {
+  flex-grow: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  position: relative;
+}
+
+.file-viewer {
+  background: rgba(0, 25, 10, 0.95);
+  border: 1px solid #7abf3c;
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  min-height: 500px;
+  box-shadow: 0 0 30px rgba(125, 255, 0, 0.18);
+  position: relative;
+}
+
+.fv-header {
+  border-bottom: 1px solid #004d00;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.fv-title {
+  color: #00ff00;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-shadow: 0 0 5px #00cc00;
+}
+
+.fv-meta {
+  color: #00dd00;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.fv-content {
+  color: #e6e6e6;
+  line-height: 1.6;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.fv-content p {
+  margin-bottom: 15px;
+}
+
+.creepy-hint {
+  color: #00ff00;
+  font-style: italic;
+  border-left: 2px solid #00cc00;
+  padding-left: 10px;
+  margin-top: 20px;
+  background: rgba(0, 255, 0, 0.08);
+}
+
+.redacted-block {
+  background: #3d003f;
+  color: #3d003f;
+  display: inline-block;
+}
+
+.redacted-block::selection {
+  background: #00ff00;
+  color: #000;
+}
+
+.flicker-text {
+  animation: blink 0.1s infinite;
+  color: #00ff00;
+}
+
+.pixel-glitch::before {
+  content: "THEY CAN SEE YOU";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(125, 255, 0, 0.1);
+  color: #bedc5f;
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: screen;
+  animation: glitch-skew 0.2s infinite;
+}
+
+.blue-screen {
+  background: #001100 !important;
+  color: #d9f08f !important;
+  text-shadow: 0 0 10px #96c44d;
+}
