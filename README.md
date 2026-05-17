@@ -20,11 +20,10 @@ The site is built to feel like you're exploring a forgotten research network con
 - 
 ## Screenshots
 
-![Terminal](images/terminal.png)
+![Recording Page](screens/record.png)
 
-![Dashboard](images/dashboard.png)
+![Archive Page](screens/database.png)
 
-![Archive](images/archive.png)
 ## Tech Used:
 Vanilla HTML/CSS/JS
 
