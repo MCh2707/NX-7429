@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IN MEMORIAM // Dr. Elias Voss</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .memorial-container {
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .photo-placeholder {
+            width: 200px;
+            height: 250px;
+            border: 2px solid var(--term-dim);
+            margin: 0 auto 2rem auto;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::after {
+            content: "IMAGE CORRUPTED";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--term-red);
+            font-size: 0.8rem;
+            text-shadow: var(--glow-red);
+            opacity: 0.5;
+        }
+
+        .memorial-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.2rem;
+            color: var(--term-white);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            text-shadow: none;
+        }
+
+        .glitch-word {
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .glitch-word:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            color: var(--term-red);
+            text-shadow: var(--glow-red);
+            background: black;
+        }
+
+        .hidden-link-container {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container memorial-container">
+
+        <div class="photo-placeholder" title="HE LIED TO US" aria-label="HE LIED TO US">
+
+        </div>
+
+        <h1 style="color: var(--term-white); text-shadow: none;">Dr. Elias Voss</h1>
+        <p class="dim" style="margin-bottom: 2rem;">1978 - 2026</p>
+
+        <p class="memorial-text">
+            NEXUS Dynamics mourns the loss of our visionary lead scientist. <br><br>
+            Dr. Voss tragically passed away during the NEXUS <span class="glitch-word">shutdown</span> incident. His
+            contributions to the fields of artificial intelligence and behavioral prediction will forever remain the
+            foundation of our work.
+        </p>
+
+        <div class="hidden-link-container">
+            <a href="recovery.html" class="invisible" style="border: none; cursor: default;">hidden truth</a>
+        </div>
+    </div>
+
+    <script src="system.js"></script>
+    <script>
+        document.querySelector('.glitch-word').addEventListener('mouseenter', () => {
+            NexusSystem.playStatic(0.2);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,395 @@
+<!yyyyyy html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS // WORKSPACE</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <style>
+      :root {
+        --bg-color: #000000;
+        --term-green: #00ff00;
+
+        --term-dim: #004d00;
+
+        --term-red: #ff0000;
+        --term-white: #00ff00;
+        --glow-green:
+          0 0 5px rgba(0, 255, 0, 0.4), 0 0 10px rgba(0, 255, 0, 0.2);
+      }
+
+      body {
+        background-color: var(--bg-color);
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 100, 0, 0.05) 2px,
+          rgba(0, 100, 0, 0.05) 4px
+        );
+      }
+
+      .dash-sidebar {
+        background: rgba(0, 20, 0, 0.9) !important;
+        border-right: 1px solid #004d00 !important;
+      }
+
+      .dash-sidebar a {
+        color: #00dd00 !important;
+        border-bottom: 1px solid #003300 !important;
+      }
+
+      .dash-sidebar a:hover,
+      .dash-sidebar a.active {
+        background: rgba(0, 255, 0, 0.1) !important;
+        color: var(--term-green) !important;
+        border-bottom: 1px solid var(--term-green) !important;
+      }
+
+      .dash-topbar {
+        background: rgba(0, 20, 0, 0.9) !important;
+        border-bottom: 1px solid #004d00ea !important;
+      }
+
+      .dash-widget {
+        border: 1px solid #004d006f !important;
+        background: rgba(0, 30, 0, 0.6) !important;
+        box-shadow: inset 0 0 20px rgba(0, 100, 0, 0.2) !important;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .dash-widget h3 {
+        color: var(--term-green) !important;
+        border-bottom: 1px solid #004d00 !important;
+      }
+
+      .threat-text {
+        position: absolute;
+        bottom: -50px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: var(--term-red);
+        font-size: 1.5rem;
+        font-weight: bold;
+        opacity: 0;
+        transition:
+          bottom 0.2s,
+          opacity 0.2s;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      .dash-widget:hover .threat-text {
+        bottom: 50%;
+        opacity: 0.8;
+        animation: glitch-skew 0.2s infinite;
+      }
+
+      .dash-widget:hover > *:not(.threat-text) {
+        opacity: 0.1;
+        filter: blur(2px);
+      }
+
+      .blood-drip {
+        position: fixed;
+        top: 0;
+        width: 2px;
+        background: var(--term-red);
+        opacity: 0.5;
+        z-index: 9999;
+        pointer-events: none;
+        animation: drip 10s infinite;
+      }
+
+      @keyframes drip {
+        0% {
+          height: 0;
+          top: 0;
+          opacity: 0.8;
+        }
+
+        50% {
+          height: 20vh;
+          opacity: 0.4;
+        }
+
+        100% {
+          height: 100vh;
+          top: 100vh;
+          opacity: 0;
+        }
+      }
+
+      .dash-widget li {
+        border-bottom: 1px solid #003300 !important;
+      }
+    </style>
+  </head>
+
+  <body class="corp-body">
+    <div class="dust-container">
+      <div class="dust"></div>
+      <div class="dust"></div>
+    </div>
+
+    <div class="blood-drip" style="left: 20vw; animation-delay: 2s"></div>
+    <div class="blood-drip" style="left: 70vw; animation-delay: 5s"></div>
+
+    <div class="dash-layout">
+      <div class="dash-sidebar">
+        <div
+          style="
+            padding: 0 20px 20px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 20px;
+          "
+        > 
+          <h2 style="font-size: 1.2rem; color: var(--term-dim)">DIRECTORIES</h2>
+        </div>
+        <a href="#" id="nav-inbox" onclick="handleNavSeq('inbox')"
+          >Inbox (99+)</a
+        >
+        <a href="#" id="nav-proj" onclick="handleNavSeq('proj')"
+          >Archived Projects</a
+        >
+        <a href="#" class="stuck" id="nav-sec" onclick="handleNavSeq('sec')"
+          >Security: ERR_17</a
+        >
+        <a
+          href="#"
+          id="nav-priv"
+          onclick="handleNavSeq('priv')"
+          style="opacity: 0.3; pointer-events: none"
+          >Personal / Private (LOCKED)</a
+        >
+      </div>
+
+      <div class="dash-main">
+        <div class="dash-topbar">
+          <div class="dash-clock" id="sys-clock">00:00:00</div>
+          <div class="profile-icon" onclick="toggleProfile()">
+            <img
+              src=""
+              alt=""
+              style="
+                background: repeating-linear-gradient(
+                  0deg,
+                  #111,
+                  #111 2px,
+                  #333 2px,
+                  #333 4px
+                );
+              "
+            />
+          </div>
+        </div>
+        <div class="profile-panel" id="profile-panel">
+          <div class="voss-photo">
+            <img
+              id="voss-img"
+              src=""
+              alt=""
+              style="
+                background:
+                  linear-gradient(135deg, #1a0000, #0a0a0a),
+                  repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 0, 0, 0.1) 2px,
+                    rgba(255, 0, 0, 0.1) 4px
+                  );
+              "
+            />
+          </div>
+          <h3
+            style="
+              color: var(--term-white);
+              border-bottom: 1px solid #444;
+              padding-bottom: 10px;
+            "
+          >
+            Dr. Elias Voss
+          </h3>
+          <p class="red">STATUS: TERMINATED / ARCHIVED</p>
+          <p class="dim" style="margin-top: 10px; font-size: 0.8rem">
+            Last Login: 2026-05-13 18:30
+          </p>
+
+          <div
+            style="
+              margin-top: 20px;
+              padding: 10px;
+              border: 1px solid #333;
+              background: #0a0a0a;
+            "
+          >
+            <p
+              style="
+                color: var(--term-dim);
+                font-size: 0.8rem;
+                margin-bottom: 5px;
+              "
+            >
+              PSYCH_EVAL_TAGS:
+            </p>
+            <span
+              style="
+                background: #222;
+                padding: 2px 5px;
+                font-size: 0.7rem;
+                margin-right: 5px;
+              "
+              >PARANOIA</span
+            >
+            <span
+              style="
+                background: #222;
+                padding: 2px 5px;
+                font-size: 0.7rem;
+                margin-right: 5px;
+              "
+              >OBSESSION</span
+            >
+            <span style="background: #222; padding: 2px 5px; font-size: 0.7rem"
+              >ISOLATION</span
+            >
+          </div>
+
+          <div style="margin-top: 20px">
+
+          </div>
+          <button id="btn-dossier" style="margin-top: 20px; width: 100%">
+            VIEW FULL DOSSIER
+          </button>
+        </div>
+
+        <div class="dash-content">
+
+          <div class="dash-widget">
+            <div class="threat-text">YOU CANNOT HIDE</div>
+            <h3>Unsent Drafts</h3>
+            <ul style="list-style: none">
+              <li style="border-bottom: 1px solid #222; padding: 10px 0">
+                <span class="dim">[EMPTY]</span> - 01:14
+              </li>
+              <li style="border-bottom: 1px solid #222; padding: 10px 0">
+                <span class="dim">[EMPTY]</span> - 03:17
+              </li>
+              <li
+                style="
+                  border-bottom: 1px solid #222;
+                  padding: 10px 0;
+                  color: var(--term-white);
+                "
+              >
+                <strong>SUBJECT: CORRUPTION</strong> -
+                <span class="red">07:42</span>
+              </li>
+              <li style="padding: 10px 0">
+                <span class="dim">[EMPTY]</span> - 11:03
+              </li>
+            </ul>
+          </div>
+
+          <!-- Widget: Chat Log -->
+          <div class="dash-widget">
+            <div class="threat-text">THEY ARE HERE</div>
+            <h3>Internal Comm_Log_99</h3>
+            <div class="chat-log">
+              <p><span class="dim">HARRIS:</span> "Did you hear it again?"</p>
+              <p><span class="dim">CHEN:</span> "Hear what?"</p>
+              <p>
+                <span class="dim">HARRIS:</span> "The typing. I know you
+                <span class="flicker" style="color: var(--term-white)"
+                  >observe</span
+                >d it too."
+              </p>
+              <p>
+                <span class="dim">CHEN:</span> "We're alone on this secto<span
+                  class="flicker"
+                  style="color: var(--term-white)"
+                  >r</span
+                >."
+              </p>
+            </div>
+          </div>
+
+          <!-- Widget: Calendar -->
+          <div class="dash-widget">
+            <div class="threat-text">TIME IS UP</div>
+            <h3>Calendar (May 2026)</h3>
+            <div class="cal-entry">
+              <span class="cal-text">14 - Routine Maintenance</span>
+            </div>
+            <div class="cal-entry">
+              <span class="cal-text">15 - AI Ethics Board Review</span>
+            </div>
+            <div class="cal-entry">
+              <span class="cal-text">16 - Server Diagnostics</span>
+            </div>
+            <div class="cal-entry corrupted">
+              <span class="cal-text" style="color: var(--term-white)"
+                >17 - DO NOT OPEN THE CORE</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="dash-widget"
+            id="activity-widget"
+            style="position: relative"
+          >
+            <div class="threat-text">RUN</div>
+            <h3>Recent Activity Logs</h3>
+            <table
+              style="width: 100%; border-collapse: collapse; font-size: 0.9rem"
+            >
+              <tr style="border-bottom: 1px solid #333">
+                <th style="text-align: left; padding: 5px">Action</th>
+                <th style="text-align: right; padding: 5px">Status</th>
+              </tr>
+              <tr>
+                <td style="padding: 5px">NAV_REQ: Inbox</td>
+                <td style="text-align: right; color: var(--term-green)">OK</td>
+              </tr>
+              <tr>
+                <td style="padding: 5px">NAV_REQ: Projects</td>
+                <td style="text-align: right; color: var(--term-green)">OK</td>
+              </tr>
+              <tr>
+                <td style="padding: 5px">NAV_REQ: Security</td>
+                <td style="text-align: right; color: var(--term-green)">OK</td>
+              </tr>
+              <tr>
+                <td style="padding: 5px; color: var(--term-white)">
+                  NAV_REQ: Private
+                </td>
+                <td style="text-align: right; color: var(--term-red)">
+                  LOCKED
+                </td>
+              </tr>
+            </table>
+
+
+            <a
+              href="#"
+              class="ghost-file"
+              id="ghost-file"
+              style="position: absolute; bottom: 20px; right: 20px"
+              >observer_log.txt</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="system.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+    </script>
+  </body>
+</html>

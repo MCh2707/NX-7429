@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TERMINAL // NEXUS</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body>
+    <!-- 
+        ADMIN NOTE!!!
+         Never delete this note!
+         USERNAME: EV-7429
+         PASWORD: genesis
+    -->
+    <div class="dust-container">
+      <div class="dust"></div>
+      <div class="dust"></div>
+    </div>
+    <div class="container" style="opacity: 0; animation: fade-in 4s forwards">
+      <h1 class="glitch glitch-hover" data-text="FACILITY LOCKDOWN ACTIVE">
+        FACILITY LOCKDOWN ACTIVE
+      </h1>
+      <div id="intro-text"></div>
+
+      <div id="status-container" class="hidden" style="margin-top: 2rem">
+        <p><strong>SYSTEM STATUS:</strong></p>
+        <p class="dim">Core: <span class="red">OFFLINE</span></p>
+        <p class="dim">Memory Sectors: <span class="red">CORRUPTED</span></p>
+        <p class="dim">Observer Nodes: 1 ACTIVE</p>
+      </div>
+
+      <div id="btn-container" class="hidden" style="margin-top: 2rem">
+        <button id="btn-access">ACCESS TERMINAL</button>
+        <button id="btn-status">SYSTEM STATUS</button>
+      </div>
+
+      <div
+        id="login-form-container"
+        class="hidden"
+        style="
+          margin-top: 2rem;
+          border-top: 1px solid var(--term-dim);
+          padding-top: 1rem;
+        "
+      >
+        <p><strong>NEXUS ENTERPRISE LOGIN</strong></p>
+        <p class="dim" style="margin-bottom: 1rem">
+          Authentication required for deep system access.
+        </p>
+
+        <div style="margin-bottom: 10px">
+          <label style="display: block; margin-bottom: 5px">USERNAME:</label>
+          <input type="text" id="login-user" autocomplete="off" />
+        </div>
+        <div style="margin-bottom: 20px">
+          <label style="display: block; margin-bottom: 5px">PASSWORD:</label>
+          <input type="password" id="login-pass" autocomplete="off" />
+        </div>
+        <button id="btn-login-submit">AUTHENTICATE</button>
+        <div id="login-error" class="red hidden" style="margin-top: 10px">
+          INVALID CREDENTIALS
+        </div>
+      </div>
+
+      <div id="error-msg" class="sys-msg error hidden">
+        ESTABLISHING CONNECTION...
+      </div>
+      <div
+        id="glitch-overlay"
+        class="hidden"
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: white;
+          z-index: 9999;
+          opacity: 0;
+        "
+      ></div>
+
+      <div class="footer-clue">Nothing is ever deleted.</div>
+    </div>
+
+    <script src="system.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

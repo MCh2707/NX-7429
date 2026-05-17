@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CORE // CRITICAL</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/core.css" />
+  </head>
+
+  <body class="core-bg">
+    <div class="container" style="text-align: center; margin-top: 5rem">
+      <h1 class="glitch" data-text="CORE REINITIALIZATION">
+        CORE REINITIALIZATION
+      </h1>
+      <p>WARNING: CONTAINMENT PROTOCOLS FAILING.</p>
+
+      <div id="countdown">04:59</div>
+
+      <div id="input-section" style="margin-top: 3rem">
+        <p>
+          PERMANENT SYSTEM TERMINATION REQUIRES THE FOLLOWING COMMAND: ACTIVATE
+        </p>
+        <input
+          type="text"
+          id="shutdown-code"
+          autocomplete="off"
+          autofocus
+          style="
+            text-align: center;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+          "
+        />
+        <br /><br />
+        <button id="btn-submit">EXECUTE</button>
+      </div>
+
+      <div id="ending-sequence" class="hidden" style="margin-top: 3rem"></div>
+    </div>
+
+    <div
+      id="activation-window"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        max-width: 95%;
+        background: #05050a;
+        border: 2px solid #4b0082;
+        box-shadow: 0 0 30px rgba(75, 0, 130, 0.4);
+        z-index: 100;
+        padding: 40px;
+      "
+    >
+      <div
+        style="
+          background: #4b0082;
+          color: #ccc;
+          padding: 10px 15px;
+          font-weight: bold;
+          margin: -40px -40px 40px -40px;
+          display: flex;
+          justify-content: space-between;
+          font-size: 1.2rem;
+          letter-spacing: 2px;
+        "
+      >
+        <span>SYS_MESSAGE // ANOMALY</span>
+        <span>[x]</span>
+      </div>
+      <div
+        id="act-text-1"
+        style="
+          font-size: 1.8rem;
+          line-height: 2;
+          margin-bottom: 30px;
+          color: #ccc;
+        "
+      ></div>
+      <div
+        id="act-text-2"
+        class="glitch"
+        data-text=""
+        style="
+          font-size: 3.5rem;
+          color: #da70d6;
+          text-align: center;
+          margin-bottom: 30px;
+          font-weight: bold;
+          text-shadow: 0 0 15px rgba(218, 112, 214, 0.3);
+        "
+      ></div>
+      <div
+        id="act-text-3"
+        style="
+          font-size: 1.8rem;
+          line-height: 2;
+          color: #9932cc;
+          text-align: center;
+        "
+      ></div>
+    </div>
+
+    <div id="blackout-screen" class="blackout">
+      <h1
+        id="final-message"
+        class="glitch"
+        data-text=""
+        style="
+          color: var(--term-white);
+          font-size: 2rem;
+          text-align: center;
+          text-shadow: none;
+        "
+      ></h1>
+    </div>
+
+    <script src="system.js"></script>
+    <script src="system.js"></script>
+    <script src="js/core.js"></script>
+  </body>
+</html>

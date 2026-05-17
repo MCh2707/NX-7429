@@ -1,0 +1,155 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEXUS // RESTRICTED ARCHIVE</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/archive.css" />
+
+  </head>
+
+  <body class="corp-body">
+    <div class="dust-container">
+      <div class="dust"></div>
+      <div class="dust"></div>
+    </div>
+
+    <div class="archive-layout">
+      <div class="archive-sidebar">
+        <div class="archive-header">
+          <h2
+            style="
+              color: #00ff00;
+              font-size: 1.2rem;
+              text-shadow: 0 0 5px #00cc00;
+            "
+          >
+            DEEP STORAGE ARCHIVE
+          </h2>
+          <p style="color: #00dd00; font-size: 0.7rem; margin-top: 5px">
+            CLEARANCE: LEVEL 5 REQUIRED
+          </p>
+          <a
+            href="dashboard.html"
+            style="
+              display: inline-block;
+              margin-top: 10px;
+              font-size: 0.8rem;
+              color: #00ff00;
+            "
+            >&lt; EXIT TO WORKSPACE</a
+          >
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/project_overview</div>
+          <div class="file-link" onclick="loadFile('initiation', this)">
+            1976_initiation_report.doc
+          </div>
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/experiment_logs</div>
+          <div class="file-link" onclick="loadFile('test01', this)">
+            test_run_01.log
+          </div>
+          <div class="file-link" onclick="loadFile('fragment', this)">
+            redacted_fragment.tmp
+          </div>
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/incident_records</div>
+          <div class="file-link" onclick="loadFile('glitch', this)">
+            anomaly_report_03.log
+          </div>
+          <div class="file-link" onclick="loadFile('incident17', this)">
+            incident_report_17.doc
+          </div>
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/audio_transcripts</div>
+          <div class="file-link" onclick="loadFile('audio12a', this)">
+            session_12A.wav.txt
+          </div>
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/ai_behavior_reports</div>
+          <div class="file-link" onclick="loadFile('shift', this)">
+            phase_transition.rpt
+          </div>
+          <div class="file-link" onclick="loadFile('psych', this)">
+            staff_behavior.rpt
+          </div>
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/system_notes</div>
+          <div class="file-link" onclick="loadFile('name', this)">
+            unclassified_note_scan.pdf
+          </div>
+          <div
+            class="file-link"
+            onclick="loadFile('sysnote19', this)"
+            style="
+              color: #ff00ff;
+              font-weight: bold;
+              border-left: 3px solid #ff00ff;
+            "
+          >
+            SYSTEM_NOTE_19.txt
+          </div>
+        </div>
+
+        <div class="folder-group">
+          <div class="folder-title">/termination_documents</div>
+          <div
+            class="file-link"
+            onclick="loadFile('final', this)"
+            style="color: var(--term-red)"
+          >
+            final_director_note.txt
+          </div>
+        </div>
+      </div>
+
+      <div class="archive-main">
+        <div
+          id="welcome-msg"
+          style="
+            text-align: center;
+            color: #ff0000;
+            margin-top: 20vh;
+            font-weight: bold;
+            text-shadow: 0 0 5px red;
+          "
+        >
+          <p>SELECT A FILE TO DECRYPT AND VIEW.</p>
+          <p style="font-size: 0.8rem; margin-top: 10px; color: #aa3333">
+            ALL RECORDS ARE CLASSIFIED.
+          </p>
+        </div>
+
+        <div class="file-viewer hidden" id="file-viewer">
+          <div class="fv-header">
+            <div class="fv-title" id="fv-title">FILENAME</div>
+            <div class="fv-meta" id="fv-meta">METADATA</div>
+          </div>
+          <div class="fv-content" id="fv-content">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="system.js"></script>
+    <script src="js/archive.js"></script>
+
+    <!-- termination was never completed -->
+    <!-- system is still active in isolated memory nodes -->
+    <!-- observer state persists -->
+  </body>
+</html>

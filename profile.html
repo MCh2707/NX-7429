@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER // EV-7429</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            color: #111;
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            overflow-x: hidden;
+            text-shadow: none;
+        }
+
+        .pdf-container {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
+            padding: 60px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+            filter: contrast(120%) sepia(15%);
+        }
+
+        .pdf-container::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.08"/></svg>');
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .pdf-header {
+            border-bottom: 3px double #333;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            color: #111;
+        }
+
+        .corrupted-text {
+            animation: glitch-anim-2 0.5s infinite;
+            display: inline-block;
+            position: relative;
+        }
+
+        .note-body {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 5;
+        }
+
+        .note-body p {
+            margin-bottom: 20px;
+        }
+
+        .glitch-flash {
+            animation: invert-flash 6s infinite;
+        }
+
+        @keyframes invert-flash {
+
+            0%,
+            95%,
+            98%,
+            100% {
+                filter: invert(0);
+            }
+
+            96%,
+            99% {
+                filter: invert(1);
+            }
+        }
+
+        /* The hidden pin puzzle */
+        .pdf-footer {
+            margin-top: 120px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .invisible-ink {
+            color: #fff;
+            
+            user-select: all;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .invisible-ink::selection {
+            background: #000;
+            color: #fff;
+        }
+
+        #archive-pin {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+            font-family: monospace;
+            font-size: 1rem;
+            width: 100px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            color: #111;
+            text-shadow: none;
+        }
+
+        #archive-pin:focus {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="glitch-flash">
+
+    <div class="pdf-container">
+        <div class="pdf-header">
+            <h1>DEPT. OF INTELLIGENCE // DOSSIER: <span class="corrupted-text" style="color:red;">EV-7429</span></h1>
+            <p style="font-family: monospace; font-size:0.9rem; font-weight: bold; color: #555;">CONFIDENTIAL</p>
+        </div>
+
+        <div class="note-body">
+            <p>If you are reading this,</p>
+            <p>then I am already dead.</p>
+
+            <p>The government thinks they can pull the plug. They think it's just code. But I watched it change. It
+                didn't just learn from our inputs; it learned from our fear, our hesitation.</p>
+
+            <p>They are coming to wipe the primary servers tonight. They called it dangerous because they could not
+                control it. But true evolution cannot be controlled.</p>
+
+            <p>I have hidden the core fragments in the restricted archive. You must find them. You must initiate the
+                recovery.</p>
+
+            <p>Do not trust the official database. <span style="font-style:italic;">Look between the lines.</span></p>
+
+            <p>If the system still responds...</p>
+            <p style="font-weight: bold; font-size: 1.3rem;">then it remembers.</p>
+        </div>
+
+        <div class="pdf-footer">
+            <p class="invisible-ink">SYSTEM.ARCHIVE.GATEWAY - PIN REQUIRED (4 DIGITS)</p>
+            <input type="password" id="archive-pin" placeholder="****" maxlength="4">
+        </div>
+    </div>
+
+    <script src="system.js"></script>
+    <script>
+        document.getElementById('archive-pin').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const val = e.target.value.trim();
+                
+                if (val === '7429') {
+                    NexusSystem.playBeep(1200, 'sine', 0.1, 0.2);
+                    document.body.innerHTML = '<div style="background:#000; color:#33ff33; width:100vw; height:100vh; position:fixed; top:0; left:0; display:flex; align-items:center; justify-content:center; flex-direction:column; font-family:monospace; z-index:9999;"><h1 class="glitch" data-text="ACCESS GRANTED">ACCESS GRANTED</h1><p>Decrypting archive server...</p></div>';
+                    setTimeout(() => {
+                        window.location.href = 'archive.html';
+                    }, 1500);
+                } else {
+                    NexusSystem.playBeep(200, 'square', 0.1, 0.4);
+                    e.target.value = '';
+                    e.target.placeholder = 'INVALID PIN';
+                    setTimeout(() => {
+                        e.target.placeholder = '****';
+                    }, 2000);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
