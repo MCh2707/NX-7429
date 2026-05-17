@@ -17,13 +17,18 @@ The site is built to feel like you're exploring a forgotten research network con
 - Morse / binary / encoded messages
 - Dynamic ambient audio
 - Psychological horror elements
+- 
+## Screenshots
 
-## Tech Used
+![Terminal](images/terminal.png)
 
-- HTML
-- CSS
-- JavaScript
-- Web Audio API
+![Dashboard](images/dashboard.png)
+
+![Archive](images/archive.png)
+## Tech Used:
+Vanilla HTML/CSS/JS
+
+Web Audio API
 
 ## Small Hint 👀
 
