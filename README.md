@@ -34,12 +34,3 @@ Web Audio API
 ## Small Hint 👀
 
 Some things are hidden where you least expect them.
-
-## Live Website
-
-mch2707.github.io/NX-7429/
-
-
-If you find something strange in the system…
-
-that’s probably intentional.
