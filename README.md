@@ -6,6 +6,12 @@ A psychological horror / ARG-style web experience inspired by: analog horror, ab
 
 The site is built to feel like you're exploring a forgotten research network connected to a mysterious AI project called **NEXUS**.
 
+## Screenshots
+
+![Recording Page](screens/record.png)
+
+![Archive Page](screens/database.png)
+
 ## Features
 
 - Interactive terminal system
@@ -18,11 +24,7 @@ The site is built to feel like you're exploring a forgotten research network con
 - Dynamic ambient audio
 - Psychological horror elements
 - 
-## Screenshots
 
-![Recording Page](screens/record.png)
-
-![Archive Page](screens/database.png)
 
 ## Tech Used:
 Vanilla HTML/CSS/JS
