@@ -1,179 +1,436 @@
-body {
-  background-color: #020800;
-  color: #bedc5f;
-  font-family: "Courier New", Courier, monospace;
+/* =========================================================
+   CYRANET RESEARCH INSTITUTE
+   Document Management System — Public Records Access
+   Retro Terminal/CRT Redesign — Low Saturation BSL Theme
+   ========================================================= */
+
+:root {
+  --bg:        #141414;
+  --surface:   #1b1b1b;
+  --surface2:  #212121;
+  --border:    #333333;
+  --border2:   #2a2a2a;
+  --text:      #9c9c80;
+  --text-dim:  #555548;
+  --text-hi:   #c4c4a4;
+  --accent:    #5e7050;
+  --accent-bg: #252e1e;
+  --warn:      #8a7a3a;
+  --err:       #7a3838;
+  --ok:        #3a6638;
+  --titlebar:  #0e0e0e;
+  --mono:      'Courier New', Courier, monospace;
 }
 
-.archive-layout {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #0b2800 0%, #000000 90%);
-  box-shadow: inset 0 0 100px rgba(125, 255, 0, 0.18);
-  animation: pulse-bg 4s infinite alternate;
+/* Override body */
+body.corp-body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: var(--mono) !important;
+  font-size: 13px !important;
+  text-shadow: none !important;
+  min-height: 100vh;
 }
 
-@keyframes pulse-bg {
-  0% {
-    box-shadow: inset 0 0 50px rgba(255, 204, 0, 0.1);
-  }
-
-  100% {
-    box-shadow: inset 0 0 150px rgba(255, 204, 0, 0.4);
-  }
-}
-
-.archive-sidebar {
-  width: 300px;
-  background: rgba(0, 20, 0, 0.95);
-  border-right: 2px solid #40732c;
+.gov-wrapper {
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
 }
 
-.archive-header {
-  padding: 20px;
-  border-bottom: 3px solid #7abf3c;
-  background: #062200;
+/* === SITE HEADER === */
+.gov-header {
+  background: var(--titlebar) !important;
+  color: var(--text-hi) !important;
+  padding: 0 !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.gov-header-inner {
+  display: flex; align-items: center; gap: 16px;
+  padding: 10px 18px;
+}
+.gov-seal {
+  width: 52px; height: 52px;
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.55rem !important; font-weight: bold; color: var(--text-hi) !important;
+  text-align: center; line-height: 1.2; padding: 6px;
+  font-family: var(--mono) !important;
+  letter-spacing: 0;
+}
+.gov-header-text { flex-grow: 1; }
+.gov-header-title {
+  font-family: var(--mono) !important;
+  font-size: 1.15rem !important; font-weight: bold; letter-spacing: 1px !important;
+  color: var(--text-hi) !important;
+}
+.gov-header-sub {
+  font-size: 0.72rem !important; color: var(--text-dim) !important; margin-top: 2px;
+}
+.gov-header-meta {
+  text-align: right; font-size: 0.65rem !important; color: var(--text-dim) !important;
+}
+.gov-header-meta span { display: block; }
+.gov-header-meta a {
+  color: var(--text-dim) !important;
+  text-decoration: none;
+}
+.gov-header-meta a:hover {
+  color: var(--text-hi) !important;
 }
 
-.folder-group {
-  margin-bottom: 10px;
+/* === NAV BAR === */
+.gov-navbar {
+  background: var(--surface) !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-top: 1px solid var(--border2) !important;
+}
+.gov-navbar ul {
+  list-style: none;
+  display: flex; align-items: center;
+  padding: 0 18px;
+}
+.gov-navbar li a, .gov-navbar li span {
+  display: block; padding: 5px 12px;
+  font-size: 0.78rem !important; color: var(--text) !important; text-decoration: none;
+  border-right: 1px solid var(--border2) !important;
+  font-family: var(--mono) !important;
+  border-bottom: none !important;
+}
+.gov-navbar li a:hover {
+  background: var(--surface2) !important;
+  color: var(--text-hi) !important;
+  text-decoration: none !important;
+}
+.gov-navbar li:first-child a { border-left: 1px solid var(--border2) !important; }
+.gov-navbar li.nav-current a {
+  background: var(--accent-bg) !important;
+  font-weight: bold; color: var(--text-hi) !important;
+  border-left: 1px solid var(--border2) !important;
+}
+.gov-navbar-right {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 0;
+}
+.gov-navbar-right a {
+  border: 1px solid var(--border) !important;
+  color: var(--text-dim) !important;
+  padding: 2px 10px !important;
 }
 
-.folder-title {
-  padding: 10px 20px;
-  color: #bedc5f;
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  background: #0a1a00;
-  border-bottom: 1px solid #3a6b1f;
-  border-top: 1px solid #3a6b1f;
+/* === LAYOUT === */
+.gov-layout {
+  display: flex; min-height: calc(100vh - 140px);
+  background: var(--bg);
 }
 
-.file-link {
+/* === SIDEBAR === */
+.gov-sidebar {
+  width: 230px; flex-shrink: 0;
+  border-right: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  padding: 0;
+}
+.sidebar-section {
+  border-bottom: 1px solid var(--border) !important;
+}
+.sidebar-section-title {
+  background: var(--titlebar) !important; color: var(--text-dim) !important;
+  padding: 5px 10px; font-size: 0.72rem;
+  font-weight: bold; letter-spacing: 0.5px;
+  cursor: default;
+  font-family: var(--mono);
+  border-bottom: 1px solid var(--border);
+}
+.sidebar-folder {
+  background: var(--surface2) !important;
+  padding: 6px 10px 6px 16px;
+  border-bottom: 1px solid var(--border) !important;
+  font-size: 0.75rem; color: var(--text-hi) !important;
+  cursor: default; font-weight: bold;
+  display: flex; align-items: center; gap: 5px;
+}
+.sidebar-folder-icon { font-size: 0.65rem; color: var(--accent); }
+.sidebar-file-link {
   display: block;
-  padding: 10px 20px 10px 30px;
-  color: #cbe576;
-  border-bottom: 1px solid #102508;
+  padding: 6px 10px 6px 26px;
+  font-size: 0.75rem;
+  color: var(--text) !important; text-decoration: none;
+  border-bottom: 1px solid var(--border2) !important;
   cursor: pointer;
-  transition: all 0.2s;
-  font-family: "Courier New", monospace;
-  font-size: 0.85rem;
-  background: #041300;
+  font-family: var(--mono);
+  transition: background 0.1s, color 0.1s;
 }
-
-.file-link:hover,
-.file-link.active {
-  background: #1b4400;
-  color: #e7f7a6;
-  border-left: 5px solid #96c44d;
-  padding-left: 25px;
-  text-shadow: 0 0 10px #96c44d;
-  animation: glitch-skew 0.3s infinite;
+.sidebar-file-link:hover {
+  color: var(--text-hi) !important;
+  text-decoration: none !important;
+  background: var(--surface2) !important;
 }
-
-.archive-main {
-  flex-grow: 1;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  position: relative;
-}
-
-.file-viewer {
-  background: rgba(0, 25, 10, 0.95);
-  border: 1px solid #7abf3c;
-  padding: 40px;
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
-  min-height: 500px;
-  box-shadow: 0 0 30px rgba(125, 255, 0, 0.18);
-  position: relative;
-}
-
-.fv-header {
-  border-bottom: 1px solid #004d00;
-  padding-bottom: 20px;
-  margin-bottom: 30px;
-}
-
-.fv-title {
-  color: #00ff00;
-  font-size: 1.2rem;
-  margin-bottom: 5px;
+.sidebar-file-link.active {
+  background: var(--accent-bg) !important;
+  color: var(--text-hi) !important;
   font-weight: bold;
-  text-shadow: 0 0 5px #00cc00;
+  border-left: 2px solid var(--accent);
+  padding-left: 24px;
+}
+.sidebar-file-link.restricted {
+  color: var(--text-dim) !important; cursor: not-allowed;
+}
+.sidebar-file-link.flagged { color: var(--warn) !important; }
+
+/* === MAIN CONTENT === */
+.gov-main {
+  flex-grow: 1; padding: 0; display: flex; flex-direction: column;
+  background: var(--bg);
+  overflow-y: auto;
 }
 
-.fv-meta {
-  color: #00dd00;
-  font-size: 0.8rem;
-  font-family: monospace;
+/* === MAIN TOOLBAR === */
+.main-toolbar {
+  background: var(--titlebar) !important; border-bottom: 1px solid var(--border) !important;
+  padding: 6px 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.main-toolbar-label { font-size: 0.72rem; color: var(--text-hi); font-weight: bold; }
+.main-toolbar-count { font-size: 0.68rem; color: var(--text-dim); }
+.search-form { display: flex; gap: 4px; margin-left: auto; }
+.search-form input[type="text"] {
+  border: 1px solid var(--border) !important; padding: 2px 6px;
+  font-size: 0.72rem; width: 160px; font-family: var(--mono) !important;
+  background: var(--surface) !important; color: var(--text) !important;
+  outline: none;
+}
+.search-form button {
+  background: var(--surface2) !important; border: 1px solid var(--border) !important;
+  padding: 2px 10px; font-size: 0.72rem;
+  cursor: pointer; font-family: var(--mono) !important;
+  color: var(--text) !important;
+  outline: none;
+}
+.search-form button:hover {
+  background: var(--accent-bg) !important;
+  color: var(--text-hi) !important;
 }
 
-.fv-content {
-  color: #e6e6e6;
-  line-height: 1.6;
-  font-family: "Courier New", Courier, monospace;
+/* === WELCOME / LANDING === */
+.gov-welcome {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  display: none;
+}
+.gov-welcome.visible { display: block; }
+.gov-welcome h2 {
+  font-family: var(--mono) !important;
+  font-size: 1rem !important; font-weight: bold;
+  border-bottom: 1px solid var(--border) !important; padding-bottom: 6px; margin-bottom: 10px;
+  color: var(--text-hi) !important;
+}
+.gov-welcome p { font-size: 0.78rem; line-height: 1.6; margin-bottom: 8px; color: var(--text) !important; }
+.notice-box {
+  background: var(--accent-bg) !important; border: 1px solid var(--accent) !important;
+  padding: 8px 12px; margin-top: 12px; font-size: 0.75rem;
+  color: var(--text) !important;
+}
+.notice-box strong { color: var(--warn) !important; }
+
+/* === FILE TABLE === */
+.file-table-wrap { padding: 16px 24px; flex-grow: 1; }
+.file-table-title {
+  font-family: var(--mono) !important;
+  font-size: 0.92rem !important; font-weight: bold;
+  border-bottom: 2px solid var(--border) !important;
+  padding-bottom: 5px; margin-bottom: 12px; color: var(--text-hi) !important;
+}
+.file-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 0.78rem; margin-bottom: 20px;
+}
+.file-table th {
+  background: var(--titlebar) !important; color: var(--text-dim) !important;
+  padding: 5px 8px; text-align: left;
+  font-weight: normal; font-size: 0.72rem;
+  border-bottom: 1px solid var(--border) !important;
+}
+.file-table td {
+  padding: 6px 8px; border-bottom: 1px solid var(--border2) !important;
+  color: var(--text) !important;
+}
+.file-table tr:hover td { background: var(--surface) !important; }
+.file-table tr.row-flagged td { background: var(--accent-bg) !important; }
+.file-table tr.row-flagged:hover td { background: var(--surface2) !important; }
+.file-table .ft-link {
+  color: var(--text) !important; text-decoration: none; cursor: pointer;
+  border-bottom: none !important;
+}
+.file-table .ft-link:hover { color: var(--text-hi) !important; text-decoration: underline; }
+.file-table .ft-restricted { color: var(--text-dim) !important; cursor: not-allowed; }
+.file-table .ft-type { color: var(--text-dim); font-size: 0.68rem; }
+.file-table .ft-date { color: var(--text-dim); white-space: nowrap; }
+.file-table .ft-size { color: var(--text-dim); text-align: right; }
+.file-table .badge {
+  display: inline-block; padding: 1px 5px; font-size: 0.6rem;
+  border: 1px solid; margin-left: 4px;
+}
+.badge-restricted { color: var(--err) !important; border-color: var(--err) !important; background: transparent !important; }
+.badge-new { color: var(--ok) !important; border-color: var(--ok) !important; background: transparent !important; }
+.badge-flagged { color: var(--warn) !important; border-color: var(--warn) !important; background: transparent !important; }
+
+/* === DOCUMENT VIEWER === */
+.doc-viewer { padding: 20px 30px; display: none; }
+.doc-viewer.visible { display: block; }
+.doc-back-bar {
+  margin-bottom: 14px; padding: 6px 0;
+  border-bottom: 1px solid var(--border) !important; font-size: 0.75rem;
+  color: var(--text-dim);
+}
+.doc-back-bar a {
+  color: var(--text) !important; text-decoration: none; cursor: pointer;
+  border-bottom: none !important;
+}
+.doc-back-bar a:hover { text-decoration: underline; color: var(--text-hi) !important; }
+
+/* Document paper — styled as a clean terminal printout page */
+.doc-paper {
+  max-width: 760px;
+  border: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  padding: 40px 48px;
+  font-family: var(--mono) !important;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text) !important;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.3) !important;
 }
 
-.fv-content p {
-  margin-bottom: 15px;
+.doc-letterhead {
+  border-bottom: 2px solid var(--border) !important;
+  padding-bottom: 16px; margin-bottom: 22px;
+  display: flex; justify-content: space-between; align-items: flex-start;
 }
-
-.creepy-hint {
-  color: #00ff00;
-  font-style: italic;
-  border-left: 2px solid #00cc00;
-  padding-left: 10px;
-  margin-top: 20px;
-  background: rgba(0, 255, 0, 0.08);
+.doc-org { font-weight: bold; font-size: 0.95rem; color: var(--text-hi) !important; }
+.doc-org-sub { font-size: 0.75rem; color: var(--text-dim) !important; margin-top: 2px; }
+.doc-stamp {
+  text-align: right; font-size: 0.68rem; color: var(--text-dim);
+  font-family: var(--mono) !important;
 }
-
-.redacted-block {
-  background: #3d003f;
-  color: #3d003f;
+.doc-stamp span { display: block; }
+.classification-stamp {
   display: inline-block;
+  border: 2px solid var(--err) !important; color: var(--err) !important;
+  padding: 2px 8px; font-weight: bold; font-size: 0.72rem;
+  letter-spacing: 1px; font-family: var(--mono) !important;
+  margin-top: 6px; transform: rotate(-2deg);
+  background: transparent !important;
+}
+.classification-stamp.unclassified {
+  border-color: var(--ok) !important; color: var(--ok) !important;
+}
+.classification-stamp.confidential {
+  border-color: var(--warn) !important; color: var(--warn) !important;
 }
 
-.redacted-block::selection {
-  background: #00ff00;
-  color: #000;
+.doc-meta-block {
+  background: var(--surface2) !important; border: 1px solid var(--border) !important;
+  padding: 10px 14px; margin-bottom: 20px;
+  font-family: var(--mono) !important; font-size: 0.75rem;
+}
+.doc-meta-block table { border-collapse: collapse; width: 100%; }
+.doc-meta-block td { padding: 2px 6px; color: var(--text) !important; }
+.doc-meta-block td:first-child { color: var(--text-dim) !important; width: 130px; }
+
+.doc-title {
+  font-size: 1rem; font-weight: bold; text-align: center;
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--text-hi) !important;
+}
+.doc-section-head {
+  font-weight: bold; margin: 18px 0 6px;
+  border-bottom: 1px solid var(--border) !important; padding-bottom: 3px;
+  font-size: 0.88rem;
+  color: var(--text-hi) !important;
+}
+.doc-paper p { margin-bottom: 10px; }
+.doc-paper ul { margin: 8px 0 12px 24px; }
+.doc-paper li { margin-bottom: 4px; }
+
+.doc-redacted {
+  background: var(--text-dim) !important; color: var(--text-dim) !important;
+  padding: 0 3px; user-select: all;
+  cursor: default;
+}
+.doc-redacted::selection { background: var(--text); color: var(--text-dim); }
+
+.doc-note {
+  background: var(--surface2) !important; border-left: 3px solid var(--border) !important;
+  padding: 8px 12px; margin: 14px 0; font-size: 0.8rem; color: var(--text) !important;
+  font-family: var(--mono) !important;
+}
+.doc-warning {
+  background: var(--accent-bg) !important; border: 1px solid var(--err) !important;
+  padding: 8px 12px; margin: 14px 0;
+  font-family: var(--mono) !important; font-size: 0.78rem; color: var(--err) !important;
 }
 
-.flicker-text {
-  animation: blink 0.1s infinite;
-  color: #00ff00;
+.doc-signature-block {
+  margin-top: 30px; padding-top: 16px;
+  border-top: 1px solid var(--border) !important; font-size: 0.78rem;
+}
+.sig-line { margin-bottom: 20px; }
+.sig-name { font-weight: bold; color: var(--text-hi) !important; }
+.sig-title { color: var(--text-dim) !important; font-size: 0.72rem; }
+
+/* sysnote19 specific overrides for containment key inputs */
+#final-key-input {
+  background: var(--surface2) !important;
+  border: 1px solid var(--border) !important;
+  border-bottom: 2px solid var(--err) !important;
+  color: var(--text-hi) !important;
+  font-family: var(--mono) !important;
+  padding: 8px !important;
+  outline: none;
+  font-size: 1rem !important;
+  width: 100% !important;
+  text-shadow: none !important;
+}
+#final-key-button {
+  background: var(--surface2) !important;
+  border: 1.5px solid var(--err) !important;
+  color: var(--err) !important;
+  font-family: var(--mono) !important;
+  padding: 10px 18px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  transition: all 0.15s !important;
+  margin-top: 12px !important;
+  width: 100% !important;
+}
+#final-key-button:hover {
+  background: var(--err) !important;
+  color: var(--surface) !important;
 }
 
-.pixel-glitch::before {
-  content: "THEY CAN SEE YOU";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(125, 255, 0, 0.1);
-  color: #bedc5f;
-  font-size: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0.5;
-  mix-blend-mode: screen;
-  animation: glitch-skew 0.2s infinite;
+/* === FOOTER === */
+.gov-footer {
+  background: var(--titlebar) !important; color: var(--text-dim) !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 10px 18px;
+  font-size: 0.65rem;
+  display: flex; justify-content: space-between; align-items: center;
 }
+.gov-footer a { color: var(--text-dim) !important; }
+.gov-footer a:hover { color: var(--text-hi) !important; }
 
-.blue-screen {
-  background: #001100 !important;
-  color: #d9f08f !important;
-  text-shadow: 0 0 10px #96c44d;
+/* Scrollbar overrides */
+::-webkit-scrollbar { width: 12px !important; }
+::-webkit-scrollbar-track { background: var(--titlebar) !important; }
+::-webkit-scrollbar-thumb {
+  background: var(--border) !important; border: 2px solid var(--titlebar) !important;
 }
+::-webkit-scrollbar-thumb:hover { background: var(--accent) !important; }
