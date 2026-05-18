@@ -1,4 +1,4 @@
-localStorage.removeItem("nexus_reactivated");
+// Session remains locked if reactivated
 
 document.addEventListener("DOMContentLoaded", () => {
   NexusSystem.playBeep(400, "square", 0.1, 100);

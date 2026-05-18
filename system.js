@@ -20,6 +20,7 @@ const NexusSystem = {
     },
 
     playHum: function () {
+        if (window.customScaryAudio) return;
         if (!this.audioCtx) return;
         const osc = this.audioCtx.createOscillator();
         const gain = this.audioCtx.createGain();
@@ -72,6 +73,7 @@ const NexusSystem = {
     },
 
     startAmbience: function () {
+        if (window.customScaryAudio) return;
         if (!this.audioCtx) return;
 
         this.droneOsc = this.audioCtx.createOscillator();
@@ -342,6 +344,33 @@ const NexusSystem = {
 
             msg.appendChild(title);
             msg.appendChild(sub);
+
+            const playAgainBtn = document.createElement('button');
+            playAgainBtn.innerText = 'DE-AUTHORIZE & RESTART SYSTEM';
+            playAgainBtn.style.marginTop = '40px';
+            playAgainBtn.style.padding = '12px 24px';
+            playAgainBtn.style.background = 'transparent';
+            playAgainBtn.style.border = '1px solid #1a801a';
+            playAgainBtn.style.color = '#33ff33';
+            playAgainBtn.style.fontFamily = "'Courier New', Courier, monospace";
+            playAgainBtn.style.fontSize = '0.9rem';
+            playAgainBtn.style.letterSpacing = '2px';
+            playAgainBtn.style.cursor = 'pointer';
+            playAgainBtn.style.transition = 'all 0.2s';
+            playAgainBtn.onmouseover = () => {
+                playAgainBtn.style.background = '#1a801a';
+                playAgainBtn.style.color = '#000';
+            };
+            playAgainBtn.onmouseout = () => {
+                playAgainBtn.style.background = 'transparent';
+                playAgainBtn.style.color = '#33ff33';
+            };
+            playAgainBtn.onclick = () => {
+                localStorage.removeItem('nexus_reactivated');
+                window.location.href = 'index.html';
+            };
+            msg.appendChild(playAgainBtn);
+
             document.body.appendChild(msg);
 
             this.initAudio();
@@ -384,7 +413,5 @@ const NexusSystem = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (!localStorage.getItem('nexus_reactivated')) {
-        NexusSystem.init();
-    }
+    NexusSystem.init();
 });

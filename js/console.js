@@ -27,17 +27,11 @@ async function processCommand(cmd) {
       setTimeout(
         () =>
           printLog(
-            "<span style='color:#555; font-style:italic;'>[SYS_NOTE: Root pass is o-v-e-r-r-i-d-e n-e-x-u-s]</span>",
+            "<span style='color:#555; font-style:italic;'>[SYS_NOTE: Tbjwwnij Sjcqx</span>",
           ),
         800,
       );
-      setTimeout(
-        () =>
-          printLog(
-            "<span style='color:#555; font-style:italic;'>[SYS_NOTE: Route command is b-r-i-d-g-e]</span>",
-          ),
-        1600,
-      );
+
       break;
     case "status":
       printLog("System: CRITICAL ERROR. Manual override required.");
@@ -45,6 +39,13 @@ async function processCommand(cmd) {
     case "recover":
       printLog(
         "Missing parameters. Cannot recover without root authorization.",
+      );
+      setTimeout(
+        () =>
+          printLog(
+            "<span style='color:#555; font-style:italic;'>01000010 01110010 01101001 01100100 01100111 01100101</span>",
+          ),
+        1600,
       );
       break;
     case "open":

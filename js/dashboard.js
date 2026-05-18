@@ -1,107 +1,129 @@
+// CYRANET INTRANET — EMPLOYEE TERMINAL v4.2
+// dashboard.js — Session handler for E.VOSS@CYR-WS-07
+
+// --- Clock ---
+const clockEl = document.getElementById('sys-clock');
+function updateClock() {
+  const now = new Date();
+  // Occasionally show the "frozen" time as an eerie detail
+  if (Math.random() > 0.97) {
+    clockEl.textContent = '07:42:00';
+    clockEl.style.color = 'var(--warn)';
+    setTimeout(() => { clockEl.style.color = ''; }, 1200);
+  } else {
+    clockEl.textContent = now.toLocaleTimeString('en-GB');
+  }
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// --- Profile panel ---
 function toggleProfile() {
-  document.getElementById("profile-panel").classList.toggle("open");
-  NexusSystem.playBeep(1200, "sine", 0.1, 0.1);
+  const panel = document.getElementById('profile-panel');
+  panel.classList.toggle('open');
+  if (typeof NexusSystem !== 'undefined') NexusSystem.playBeep(900, 'sine', 0.05, 0.08);
 }
 
-const clockEl = document.getElementById("sys-clock");
-setInterval(() => {
-  if (Math.random() > 0.8) {
-    clockEl.innerText = "07:42";
-    clockEl.style.color = "var(--term-red)";
-    clockEl.style.animation = "glitch-skew 0.2s infinite";
-    setTimeout(() => {
-      clockEl.style.color = "";
-      clockEl.style.animation = "";
-    }, 1000);
-  } else {
-    const now = new Date();
-    clockEl.innerText = now.toLocaleTimeString("en-GB");
-  }
-}, 1000);
-
-const sequence = ["inbox", "proj", "inbox"];
-let currentIndex = 0;
+// --- Navigation sequence puzzle ---
+// Sequence: Research Logs → Employee Messages → Research Logs → unlocks Deleted Files
+const unlockSeq = ['inbox', 'proj', 'inbox'];
+let seqIndex = 0;
 
 function handleNavSeq(id) {
-  NexusSystem.playBeep(800, "square", 0.05, 0.1);
+  if (typeof NexusSystem !== 'undefined') NexusSystem.playBeep(700, 'square', 0.03, 0.06);
 
-  if (id === "sec") {
-    document.body.classList.add("glitch-tear");
-    NexusSystem.playStatic(0.5);
-    setTimeout(() => {
-      window.location.href = "archive.html";
-    }, 500);
+  if (id === 'sec') {
+    // Archive Access → navigate to archive
+    if (typeof NexusSystem !== 'undefined') NexusSystem.playBeep(900, 'sine', 0.05, 0.15);
+    setTimeout(() => { window.location.href = 'archive.html'; }, 200);
     return;
   }
 
-  if (id === "priv") {
-    window.location.href = "profile.html";
+  if (id === 'priv') {
+    const el = document.getElementById('nav-deleted');
+    if (el.style.pointerEvents === 'all') {
+      window.location.href = 'profile.html';
+    }
     return;
   }
 
-  if (id === sequence[currentIndex]) {
-    currentIndex++;
-    if (currentIndex === sequence.length) {
-      NexusSystem.playBeep(1500, "sine", 0.2, 0.5);
-      const privNav = document.getElementById("nav-priv");
-      privNav.style.opacity = "1";
-      privNav.style.pointerEvents = "all";
-      privNav.style.color = "var(--term-green)";
-      privNav.innerText = "Personal / Private (UNLOCKED)";
+  // Sequence tracking
+  if (id === unlockSeq[seqIndex]) {
+    seqIndex++;
+    if (seqIndex === unlockSeq.length) {
+      seqIndex = 0;
+      // Unlock "Deleted Files"
+      const navDel = document.getElementById('nav-deleted');
+      navDel.classList.remove('nav-unlock');
+      navDel.style.opacity = '1';
+      navDel.style.pointerEvents = 'all';
+      navDel.innerHTML = '<span class="nav-icon">&#9658;</span>Deleted Files <span style="font-size:0.6rem;color:var(--ok);">[UNLOCKED]</span>';
+      if (typeof NexusSystem !== 'undefined') NexusSystem.playBeep(1200, 'sine', 0.1, 0.4);
 
-      const flash = document.createElement("div");
-      flash.className = "subliminal-flash";
-      flash.innerText = "DIRECTORY UNLOCKED";
-      flash.style.opacity = "1";
+      const flash = document.createElement('div');
+      flash.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-family:monospace;font-size:0.9rem;color:#4a7a4a;pointer-events:none;z-index:9999;opacity:1;transition:opacity 1s;';
+      flash.textContent = 'DIRECTORY ACCESS GRANTED';
       document.body.appendChild(flash);
-      setTimeout(() => flash.remove(), 1000);
+      setTimeout(() => { flash.style.opacity = '0'; setTimeout(() => flash.remove(), 1000); }, 1500);
     }
   } else {
-    currentIndex = 0;
+    seqIndex = 0;
   }
 }
 
-const ghostFile = document.getElementById("ghost-file");
-setInterval(() => {
-  if (Math.random() > 0.7) {
-    ghostFile.classList.add("visible");
+// --- Ghost file ---
+const ghostFile = document.getElementById('ghost-file');
+if (ghostFile) {
+  setInterval(() => {
+    if (Math.random() > 0.72) {
+      ghostFile.classList.add('visible');
+      setTimeout(() => ghostFile.classList.remove('visible'), 1200);
+    }
+  }, 7000);
+
+  ghostFile.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (typeof NexusSystem !== 'undefined') NexusSystem.playBeep(1800, 'square', 0.08, 0.1);
+    ghostFile.classList.remove('visible');
+    // Show small inline message, no alert()
+    const msg = document.createElement('span');
+    msg.style.cssText = 'margin-left:12px;font-size:0.68rem;color:var(--err);';
+    msg.textContent = '[CORRUPTED — FRAGMENT: "THEY ARE LISTENING"]';
+    ghostFile.parentNode.appendChild(msg);
+    setTimeout(() => msg.remove(), 3000);
+  });
+}
+
+// --- Voss photo subtle glitch ---
+const vossImg = document.getElementById('voss-img');
+if (vossImg) {
+  setInterval(() => {
+    if (Math.random() > 0.92) {
+      vossImg.style.transform = 'scaleX(-1)';
+      setTimeout(() => { vossImg.style.transform = 'none'; }, 60);
+    }
+  }, 6000);
+}
+
+// --- Dossier button ---
+const btnDossier = document.getElementById('btn-dossier');
+if (btnDossier) {
+  btnDossier.addEventListener('click', () => {
+    if (typeof NexusSystem !== 'undefined') NexusSystem.playBeep(900, 'sine', 0.05, 0.1);
+    window.location.href = 'profile.html';
+  });
+}
+
+// --- Subtle background instability (very occasional column shift) ---
+let instabilityTimer = null;
+function scheduleInstability() {
+  const delay = 15000 + Math.random() * 30000;
+  instabilityTimer = setTimeout(() => {
+    document.documentElement.style.transform = 'translateX(1px)';
     setTimeout(() => {
-      ghostFile.classList.remove("visible");
-    }, 1000);
-  }
-}, 8000);
-
-const activityWidget = document.getElementById("activity-widget");
-activityWidget.addEventListener("mouseenter", () => {
-  const trail = document.querySelector(".cursor-trail");
-  if (trail) trail.style.transition = "transform 0.5s ease-out";
-});
-activityWidget.addEventListener("mouseleave", () => {
-  const trail = document.querySelector(".cursor-trail");
-  if (trail) trail.style.transition = "transform 0.1s ease-out";
-});
-
-ghostFile.addEventListener("click", (e) => {
-  e.preventDefault();
-  NexusSystem.playBeep(2000, "square", 0.2, 0.1);
-  alert("CORRUPTED FILE. FRAGMENT: 'THEY ARE LISTENING'");
-  ghostFile.classList.remove("visible");
-});
-
-const vossImg = document.getElementById("voss-img");
-setInterval(() => {
-  if (Math.random() > 0.9) {
-    vossImg.style.transform = "scaleX(-1)";
-    setTimeout(() => {
-      vossImg.style.transform = "none";
-    }, 50);
-  }
-}, 5000);
-
-document.getElementById("btn-dossier").addEventListener("mouseenter", () => {
-  NexusSystem.playStatic(0.5);
-  document.body.classList.add("glitch-tear");
-  setTimeout(() => {
-    window.location.href = "profile.html";
-  }, 400);
-});
+      document.documentElement.style.transform = '';
+      scheduleInstability();
+    }, 80);
+  }, delay);
+}
+scheduleInstability();

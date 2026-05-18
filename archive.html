@@ -1,155 +1,176 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEXUS // RESTRICTED ARCHIVE</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="css/archive.css" />
 
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYRANET Research Institute — Document Management System</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/archive.css" />
+</head>
 
-  <body class="corp-body">
-    <div class="dust-container">
-      <div class="dust"></div>
-      <div class="dust"></div>
-    </div>
+<body class="corp-body">
 
-    <div class="archive-layout">
-      <div class="archive-sidebar">
-        <div class="archive-header">
-          <h2
-            style="
-              color: #00ff00;
-              font-size: 1.2rem;
-              text-shadow: 0 0 5px #00cc00;
-            "
-          >
-            DEEP STORAGE ARCHIVE
-          </h2>
-          <p style="color: #00dd00; font-size: 0.7rem; margin-top: 5px">
-            CLEARANCE: LEVEL 5 REQUIRED
-          </p>
-          <a
-            href="dashboard.html"
-            style="
-              display: inline-block;
-              margin-top: 10px;
-              font-size: 0.8rem;
-              color: #00ff00;
-            "
-            >&lt; EXIT TO WORKSPACE</a
-          >
+  <div class="dust-container">
+    <div class="dust"></div>
+    <div class="dust"></div>
+  </div>
+
+  <div class="gov-wrapper">
+    <!-- Site Header -->
+    <div class="gov-header">
+      <div class="gov-header-inner">
+        <div class="gov-seal">CYRANET<br>RESEARCH<br>INST.</div>
+        <div class="gov-header-text">
+          <div class="gov-header-title">CYRANET RESEARCH INSTITUTE</div>
+          <div class="gov-header-sub">Document Management System &mdash; Public Records Access Portal &mdash; GovNet
+            v2.1</div>
         </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/project_overview</div>
-          <div class="file-link" onclick="loadFile('initiation', this)">
-            1976_initiation_report.doc
-          </div>
-        </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/experiment_logs</div>
-          <div class="file-link" onclick="loadFile('test01', this)">
-            test_run_01.log
-          </div>
-          <div class="file-link" onclick="loadFile('fragment', this)">
-            redacted_fragment.tmp
-          </div>
-        </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/incident_records</div>
-          <div class="file-link" onclick="loadFile('glitch', this)">
-            anomaly_report_03.log
-          </div>
-          <div class="file-link" onclick="loadFile('incident17', this)">
-            incident_report_17.doc
-          </div>
-        </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/audio_transcripts</div>
-          <div class="file-link" onclick="loadFile('audio12a', this)">
-            session_12A.wav.txt
-          </div>
-        </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/ai_behavior_reports</div>
-          <div class="file-link" onclick="loadFile('shift', this)">
-            phase_transition.rpt
-          </div>
-          <div class="file-link" onclick="loadFile('psych', this)">
-            staff_behavior.rpt
-          </div>
-        </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/system_notes</div>
-          <div class="file-link" onclick="loadFile('name', this)">
-            unclassified_note_scan.pdf
-          </div>
-          <div
-            class="file-link"
-            onclick="loadFile('sysnote19', this)"
-            style="
-              color: #ff00ff;
-              font-weight: bold;
-              border-left: 3px solid #ff00ff;
-            "
-          >
-            SYSTEM_NOTE_19.txt
-          </div>
-        </div>
-
-        <div class="folder-group">
-          <div class="folder-title">/termination_documents</div>
-          <div
-            class="file-link"
-            onclick="loadFile('final', this)"
-            style="color: var(--term-red)"
-          >
-            final_director_note.txt
-          </div>
-        </div>
-      </div>
-
-      <div class="archive-main">
-        <div
-          id="welcome-msg"
-          style="
-            text-align: center;
-            color: #ff0000;
-            margin-top: 20vh;
-            font-weight: bold;
-            text-shadow: 0 0 5px red;
-          "
-        >
-          <p>SELECT A FILE TO DECRYPT AND VIEW.</p>
-          <p style="font-size: 0.8rem; margin-top: 10px; color: #aa3333">
-            ALL RECORDS ARE CLASSIFIED.
-          </p>
-        </div>
-
-        <div class="file-viewer hidden" id="file-viewer">
-          <div class="fv-header">
-            <div class="fv-title" id="fv-title">FILENAME</div>
-            <div class="fv-meta" id="fv-meta">METADATA</div>
-          </div>
-          <div class="fv-content" id="fv-content">
-            
-          </div>
+        <div class="gov-header-meta">
+          <span>CRI-DMS-98</span>
+          <span id="arch-date">SYS DATE: 1998-06-02</span>
+          <span><a href="dashboard.html" style="color:var(--text-dim); border-bottom:1px solid var(--text-dim);">&larr;
+              Return to Workstation</a></span>
         </div>
       </div>
     </div>
 
-    <script src="system.js"></script>
-    <script src="js/archive.js"></script>
+    <div class="gov-navbar">
+      <ul>
+        <li><a href="dashboard.html">Home</a></li>
+        <li class="nav-current"><a href="#" onclick="showWelcome(); return false;">Browse Archive</a></li>
+        <li><a href="#" onclick="return false;">Search</a></li>
+        <li><a href="#" onclick="return false;">FOIA Requests</a></li>
+        <li><a href="#" onclick="return false;">Help</a></li>
+        <li><a href="#" onclick="return false;">Contact</a></li>
+        <li class="gov-navbar-right"><a href="#" onclick="return false;"
+            style="background:var(--surface2);border-color:var(--border);">LOGIN</a></li>
+      </ul>
+    </div>
 
-    <!-- termination was never completed -->
-    <!-- system is still active in isolated memory nodes -->
-    <!-- observer state persists -->
-  </body>
+    <div class="gov-layout">
+
+      <div class="gov-sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">BROWSE BY FOLDER</div>
+
+          <div class="sidebar-folder">
+            <span class="sidebar-folder-icon">&#128193;</span> /administrative
+          </div>
+          <a class="sidebar-file-link" id="folder-administrative" onclick="showFolder('administrative')">Budget &amp;
+            Finance</a>
+          <a class="sidebar-file-link" id="folder-personnel" onclick="showFolder('personnel')">Personnel Records</a>
+          <a class="sidebar-file-link" id="folder-memos" onclick="showFolder('memos')">Internal Memos</a>
+
+          <div class="sidebar-folder">
+            <span class="sidebar-folder-icon">&#128193;</span> /maintenance
+          </div>
+          <a class="sidebar-file-link" id="folder-maintenance" onclick="showFolder('maintenance')">Maintenance Logs</a>
+          <a class="sidebar-file-link" id="folder-equipment" onclick="showFolder('equipment')">Equipment Inventory</a>
+
+          <div class="sidebar-folder">
+            <span class="sidebar-folder-icon">&#128193;</span> /research
+          </div>
+          <a class="sidebar-file-link" id="folder-lab_schedules" onclick="showFolder('lab_schedules')">Lab Schedules</a>
+          <a class="sidebar-file-link" id="folder-research_reports" onclick="showFolder('research_reports')">Research
+            Summaries</a>
+          <a class="sidebar-file-link" id="folder-transfer_docs" onclick="showFolder('transfer_docs')">Transfer
+            Documents</a>
+
+          <div class="sidebar-folder">
+            <span class="sidebar-folder-icon">&#128193;</span> /inspections
+          </div>
+          <a class="sidebar-file-link" id="folder-inspection" onclick="showFolder('inspection')">Inspection Reports</a>
+
+          <div class="sidebar-folder">
+            <span class="sidebar-folder-icon">&#128193;</span> /project_nexus
+          </div>
+          <a class="sidebar-file-link flagged" id="folder-nexus" onclick="showFolder('nexus')">Project Files</a>
+          <a class="sidebar-file-link restricted" title="Access restricted"
+            style="cursor:not-allowed;opacity:0.5;">Classified Records [RESTRICTED]</a>
+        </div>
+
+        <div class="sidebar-section" style="padding:10px;font-size:0.7rem;color:var(--text-dim);line-height:1.6;">
+          <strong>Records displayed:</strong> 1973&ndash;1979<br>
+          <strong>Total documents:</strong> 214<br>
+          <strong>Last updated:</strong> 1979-06-02<br>
+          <br>
+          Documents marked <span style="color:var(--err);">&#9632;</span> require FOIA clearance.
+        </div>
+      </div>
+
+      <div class="gov-main">
+
+        <div class="main-toolbar">
+          <span class="main-toolbar-label" id="folder-label">Document Archive</span>
+          <span class="main-toolbar-count" id="folder-count"></span>
+          <form class="search-form" onsubmit="return false;">
+            <input type="text" placeholder="Search documents..." id="search-input" />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+
+        <div class="gov-welcome visible" id="welcome-panel">
+          <h2>Welcome to the CYRANET Document Management System</h2>
+          <p>
+            This portal provides authorized personnel and FOIA-eligible parties access to institutional
+            records produced by the Cyranet Research Institute between 1973 and 1979. Records include
+            administrative documents, facility maintenance logs, personnel transfers, budget allocations,
+            and selected research summaries.
+          </p>
+          <p>
+            Use the folder browser on the left to navigate available collections. Click any document
+            title to open a scanned record. Documents marked <em>RESTRICTED</em> require Level 4
+            clearance or a pending FOIA request approval.
+          </p>
+          <div class="notice-box">
+            <strong>NOTICE:</strong> Several records from the period 1977&ndash;1979 are currently
+            under administrative review. Access to these files may be limited. For inquiries,
+            contact the Office of Records and Compliance at ext. 4401.
+          </div>
+        </div>
+
+        <div class="file-table-wrap" id="file-table-wrap" style="display:none;">
+          <div class="file-table-title" id="file-table-title">Folder Contents</div>
+          <table class="file-table" id="file-table">
+            <thead>
+              <tr>
+                <th style="width:40%;">Document Title</th>
+                <th>Document No.</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th style="text-align:right;">Size</th>
+              </tr>
+            </thead>
+            <tbody id="file-table-body">
+            </tbody>
+          </table>
+        </div>
+
+        <div class="doc-viewer" id="doc-viewer">
+          <div class="doc-back-bar">
+            <a onclick="closeDocument()">&laquo; Back to folder listing</a>
+            &nbsp;|&nbsp; <span id="doc-breadcrumb" style="color:var(--text-dim);"></span>
+          </div>
+          <div class="doc-paper" id="doc-paper-content">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="gov-footer">
+      <span>CYRANET Research Institute &mdash; Document Management System &mdash; GovNet Framework v2.1 &copy;
+        1998</span>
+      <span>Questions? Contact: <a href="#" style="border-bottom:1px solid var(--text-dim);">records@cyranet.gov.net</a>
+        &nbsp;|&nbsp; <a href="#" style="border-bottom:1px solid var(--text-dim);">Privacy Policy</a> &nbsp;|&nbsp; <a
+          href="#" style="border-bottom:1px solid var(--text-dim);">Accessibility</a></span>
+    </div>
+  </div>
+
+  <script src="system.js"></script>
+  <script src="js/archive.js"></script>
+
+</body>
+
 </html>

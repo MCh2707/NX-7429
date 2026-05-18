@@ -1,0 +1,151 @@
+/* =========================================================
+   CYRANET RESEARCH INSTITUTE — BSL CORE TERMINATION CORE
+   css/core.css — Blood-Red / Rusted Iron Terminal Style
+   ========================================================= */
+
+:root {
+  --bg:        #100a0a;
+  --surface:   #181111;
+  --surface2:  #201616;
+  --border:    #421e1e;
+  --border2:   #2e1515;
+  --text:      #bfa1a1;
+  --text-dim:  #6e4e4e;
+  --text-hi:   #f0cccc;
+  --err:       #a83232;
+  --err-bg:    #2d1111;
+  --accent:    #9e3a3a;
+  --titlebar:  #0a0505;
+  --mono:      'Courier New', Courier, monospace;
+}
+
+body.core-bg {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+  font-family: var(--mono) !important;
+  overflow: hidden;
+  width: 100vw; height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+.os-window {
+  width: 100vw; height: 100vh;
+  display: flex; flex-direction: column;
+  background: var(--bg);
+}
+
+.os-titlebar {
+  background: var(--titlebar);
+  border-bottom: 1px solid var(--border);
+  padding: 4px 14px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.68rem; color: var(--text-dim);
+  letter-spacing: 0.5px; flex-shrink: 0;
+}
+
+.os-body {
+  flex-grow: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 30px; overflow-y: auto;
+}
+
+.core-panel {
+  width: 100%; max-width: 600px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 0 40px rgba(168, 50, 50, 0.25);
+}
+
+.panel-titlebar {
+  background: var(--titlebar);
+  border-bottom: 1px solid var(--border);
+  padding: 6px 12px;
+  font-size: 0.68rem; color: var(--err);
+  letter-spacing: 0.8px; text-transform: uppercase;
+  font-weight: bold;
+}
+
+.panel-body {
+  padding: 32px 24px; text-align: center;
+}
+
+/* Red Countdown clock */
+#countdown {
+  font-size: 3.5rem;
+  color: var(--err);
+  font-weight: bold;
+  letter-spacing: 4px;
+  margin: 20px 0;
+  text-shadow: 0 0 15px rgba(168, 50, 50, 0.4);
+  font-family: var(--mono);
+}
+
+/* Warnings and instructions */
+.core-warning-banner {
+  background: var(--err-bg);
+  border: 1px solid var(--err);
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  color: var(--text-hi);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Input Fields and Buttons */
+#shutdown-code {
+  background: var(--surface2) !important;
+  border: 1px solid var(--border) !important;
+  border-bottom: 2px solid var(--err) !important;
+  color: var(--text-hi) !important;
+  font-family: var(--mono) !important;
+  padding: 10px !important;
+  outline: none;
+  font-size: 1.1rem !important;
+  width: 80% !important;
+  margin-bottom: 20px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+#shutdown-code:focus {
+  border-color: var(--err) !important;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 8px rgba(168, 50, 50, 0.2);
+}
+
+#btn-submit {
+  background: var(--surface2) !important;
+  border: 1.5px solid var(--err) !important;
+  color: var(--err) !important;
+  font-family: var(--mono) !important;
+  padding: 10px 24px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px;
+  transition: all 0.15s !important;
+}
+#btn-submit:hover {
+  background: var(--err) !important;
+  color: var(--surface) !important;
+}
+
+/* Redesigned Activation Modal */
+#activation-window {
+  border: 1px solid var(--err) !important;
+  background: var(--surface) !important;
+  box-shadow: 0 0 50px rgba(168, 50, 50, 0.4) !important;
+}
+.act-window-titlebar {
+  background: var(--titlebar) !important;
+  color: var(--err) !important;
+  border-bottom: 1px solid var(--err) !important;
+}
+
+/* CSS Glitches */
+.hidden { display: none !important; }
+.blackout {
+  position: fixed; inset: 0; background: #000;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; z-index: 1000;
+  transition: opacity 2s ease-in-out;
+}
+.blackout.active { opacity: 1; pointer-events: all; }

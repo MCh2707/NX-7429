@@ -1,97 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DATA RECOVERY // FRAGMENT 89</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            background-color: #020202;
-        }
-        .vhs-text {
-            font-family: 'Courier New', Courier, monospace;
-            color: #fff;
-            text-shadow: 2px 2px 0 #f00, -2px -2px 0 #00f;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-top: 2rem;
-            text-transform: uppercase;
-        }
-        .hidden-frame {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 5rem;
-            color: #fff;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 100;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DATA RECOVERY // FRAGMENT 89</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background-color: #020202;
+    }
+
+    .vhs-text {
+      font-family: 'Courier New', Courier, monospace;
+      color: #fff;
+      text-shadow: 2px 2px 0 #f00, -2px -2px 0 #00f;
+      font-size: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+      text-transform: uppercase;
+    }
+
+    .hidden-frame {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      color: #fff;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 100;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container" style="max-width: 800px;">
-        <h1 class="glitch" data-text="RECOVERED FOOTAGE">RECOVERED FOOTAGE</h1>
-        <p class="dim">File: voss_confession.mp4 (CORRUPTED)</p>
+  <div class="container" style="max-width: 800px;">
+    <h1 class="glitch" data-text="RECOVERED FOOTAGE">RECOVERED FOOTAGE</h1>
+    <p class="dim">File: voss_confession.mp4 (CORRUPTED)</p>
 
-        <div class="video-container" id="vid-box">
-            <div class="vhs-overlay"></div>
-            <!-- Placeholder for YouTube embed -->
-            <div style="width: 100%; height: 100%; background: #222; display: flex; align-items: center; justify-content: center; position: absolute; top:0; left:0;">
-                <p style="color: #fff; opacity: 0.5;">[ VIDEO FEED SIGNAL LOST ]</p>
-                <p style="color: #fff; opacity: 0.5; position: absolute; bottom: 10px; right: 10px; font-size: 0.8rem;">PLAY 00:00:14</p>
-            </div>
-            
-            <div id="flash-frame" class="hidden-frame">
-                /console.html
-            </div>
-        </div>
+    <div class="video-container" id="vid-box">
+      <div class="vhs-overlay"></div>
 
-        <div class="vhs-text" id="subtitles"></div>
+      <div
+        style="width: 100%; height: 100%; background: #222; display: flex; align-items: center; justify-content: center; position: absolute; top:0; left:0;">
+        <p style="color: #fff; opacity: 0.5;">[ VIDEO FEED SIGNAL LOST ]</p>
+        <p style="color: #fff; opacity: 0.5; position: absolute; bottom: 10px; right: 10px; font-size: 0.8rem;">PLAY
+          00:00:14</p>
+      </div>
+
+      <div id="flash-frame" class="hidden-frame">
+        /console.html
+      </div>
     </div>
 
-    <script src="system.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            NexusSystem.playHum();
-            NexusSystem.playStatic(0.5);
+    <div class="vhs-text" id="subtitles"></div>
+  </div>
 
-            const subs = [
-                "You think they wanted to hide the truth.",
-                "No.",
-                "They wanted to bury it.",
-                "But I left a way back.",
-                "Find the console."
-            ];
-
-            let index = 0;
-            const subEl = document.getElementById('subtitles');
-
-            function showSubs() {
-                if (index < subs.length) {
-                    subEl.innerText = subs[index];
-                    
-                    if (index === 2) {
-                        NexusSystem.playBeep(2000, 'square', 0.1, 0.1);
-                        const frame = document.getElementById('flash-frame');
-                        frame.style.opacity = '1';
-                        setTimeout(() => {
-                            frame.style.opacity = '0';
-                        }, 100);
-                    }
-
-                    index++;
-                    setTimeout(showSubs, 3000);
-                } else {
-                    subEl.innerText = "[ SIGNAL TERMINATED ]";
-                    NexusSystem.playStatic(1);
-                }
-            }
-
-            setTimeout(showSubs, 2000);
-        });
-    </script>
+  <script src="system.js"></script>
+  <script src="js/recovery.js"></script>
 </body>
+
 </html>

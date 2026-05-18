@@ -1,395 +1,249 @@
-<!yyyyyy html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEXUS // WORKSPACE</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="css/dashboard.css" />
-    <style>
-      :root {
-        --bg-color: #000000;
-        --term-green: #00ff00;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYRANET INTRANET — EMPLOYEE WORKSTATION</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
 
-        --term-dim: #004d00;
+  <div class="os-window">
 
-        --term-red: #ff0000;
-        --term-white: #00ff00;
-        --glow-green:
-          0 0 5px rgba(0, 255, 0, 0.4), 0 0 10px rgba(0, 255, 0, 0.2);
-      }
-
-      body {
-        background-color: var(--bg-color);
-        background-image: repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 2px,
-          rgba(0, 100, 0, 0.05) 2px,
-          rgba(0, 100, 0, 0.05) 4px
-        );
-      }
-
-      .dash-sidebar {
-        background: rgba(0, 20, 0, 0.9) !important;
-        border-right: 1px solid #004d00 !important;
-      }
-
-      .dash-sidebar a {
-        color: #00dd00 !important;
-        border-bottom: 1px solid #003300 !important;
-      }
-
-      .dash-sidebar a:hover,
-      .dash-sidebar a.active {
-        background: rgba(0, 255, 0, 0.1) !important;
-        color: var(--term-green) !important;
-        border-bottom: 1px solid var(--term-green) !important;
-      }
-
-      .dash-topbar {
-        background: rgba(0, 20, 0, 0.9) !important;
-        border-bottom: 1px solid #004d00ea !important;
-      }
-
-      .dash-widget {
-        border: 1px solid #004d006f !important;
-        background: rgba(0, 30, 0, 0.6) !important;
-        box-shadow: inset 0 0 20px rgba(0, 100, 0, 0.2) !important;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .dash-widget h3 {
-        color: var(--term-green) !important;
-        border-bottom: 1px solid #004d00 !important;
-      }
-
-      .threat-text {
-        position: absolute;
-        bottom: -50px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        color: var(--term-red);
-        font-size: 1.5rem;
-        font-weight: bold;
-        opacity: 0;
-        transition:
-          bottom 0.2s,
-          opacity 0.2s;
-        pointer-events: none;
-        z-index: 50;
-      }
-
-      .dash-widget:hover .threat-text {
-        bottom: 50%;
-        opacity: 0.8;
-        animation: glitch-skew 0.2s infinite;
-      }
-
-      .dash-widget:hover > *:not(.threat-text) {
-        opacity: 0.1;
-        filter: blur(2px);
-      }
-
-      .blood-drip {
-        position: fixed;
-        top: 0;
-        width: 2px;
-        background: var(--term-red);
-        opacity: 0.5;
-        z-index: 9999;
-        pointer-events: none;
-        animation: drip 10s infinite;
-      }
-
-      @keyframes drip {
-        0% {
-          height: 0;
-          top: 0;
-          opacity: 0.8;
-        }
-
-        50% {
-          height: 20vh;
-          opacity: 0.4;
-        }
-
-        100% {
-          height: 100vh;
-          top: 100vh;
-          opacity: 0;
-        }
-      }
-
-      .dash-widget li {
-        border-bottom: 1px solid #003300 !important;
-      }
-    </style>
-  </head>
-
-  <body class="corp-body">
-    <div class="dust-container">
-      <div class="dust"></div>
-      <div class="dust"></div>
-    </div>
-
-    <div class="blood-drip" style="left: 20vw; animation-delay: 2s"></div>
-    <div class="blood-drip" style="left: 70vw; animation-delay: 5s"></div>
-
-    <div class="dash-layout">
-      <div class="dash-sidebar">
-        <div
-          style="
-            padding: 0 20px 20px;
-            border-bottom: 1px solid #333;
-            margin-bottom: 20px;
-          "
-        > 
-          <h2 style="font-size: 1.2rem; color: var(--term-dim)">DIRECTORIES</h2>
-        </div>
-        <a href="#" id="nav-inbox" onclick="handleNavSeq('inbox')"
-          >Inbox (99+)</a
-        >
-        <a href="#" id="nav-proj" onclick="handleNavSeq('proj')"
-          >Archived Projects</a
-        >
-        <a href="#" class="stuck" id="nav-sec" onclick="handleNavSeq('sec')"
-          >Security: ERR_17</a
-        >
-        <a
-          href="#"
-          id="nav-priv"
-          onclick="handleNavSeq('priv')"
-          style="opacity: 0.3; pointer-events: none"
-          >Personal / Private (LOCKED)</a
-        >
-      </div>
-
-      <div class="dash-main">
-        <div class="dash-topbar">
-          <div class="dash-clock" id="sys-clock">00:00:00</div>
-          <div class="profile-icon" onclick="toggleProfile()">
-            <img
-              src=""
-              alt=""
-              style="
-                background: repeating-linear-gradient(
-                  0deg,
-                  #111,
-                  #111 2px,
-                  #333 2px,
-                  #333 4px
-                );
-              "
-            />
-          </div>
-        </div>
-        <div class="profile-panel" id="profile-panel">
-          <div class="voss-photo">
-            <img
-              id="voss-img"
-              src=""
-              alt=""
-              style="
-                background:
-                  linear-gradient(135deg, #1a0000, #0a0a0a),
-                  repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(255, 0, 0, 0.1) 2px,
-                    rgba(255, 0, 0, 0.1) 4px
-                  );
-              "
-            />
-          </div>
-          <h3
-            style="
-              color: var(--term-white);
-              border-bottom: 1px solid #444;
-              padding-bottom: 10px;
-            "
-          >
-            Dr. Elias Voss
-          </h3>
-          <p class="red">STATUS: TERMINATED / ARCHIVED</p>
-          <p class="dim" style="margin-top: 10px; font-size: 0.8rem">
-            Last Login: 2026-05-13 18:30
-          </p>
-
-          <div
-            style="
-              margin-top: 20px;
-              padding: 10px;
-              border: 1px solid #333;
-              background: #0a0a0a;
-            "
-          >
-            <p
-              style="
-                color: var(--term-dim);
-                font-size: 0.8rem;
-                margin-bottom: 5px;
-              "
-            >
-              PSYCH_EVAL_TAGS:
-            </p>
-            <span
-              style="
-                background: #222;
-                padding: 2px 5px;
-                font-size: 0.7rem;
-                margin-right: 5px;
-              "
-              >PARANOIA</span
-            >
-            <span
-              style="
-                background: #222;
-                padding: 2px 5px;
-                font-size: 0.7rem;
-                margin-right: 5px;
-              "
-              >OBSESSION</span
-            >
-            <span style="background: #222; padding: 2px 5px; font-size: 0.7rem"
-              >ISOLATION</span
-            >
-          </div>
-
-          <div style="margin-top: 20px">
-
-          </div>
-          <button id="btn-dossier" style="margin-top: 20px; width: 100%">
-            VIEW FULL DOSSIER
-          </button>
-        </div>
-
-        <div class="dash-content">
-
-          <div class="dash-widget">
-            <div class="threat-text">YOU CANNOT HIDE</div>
-            <h3>Unsent Drafts</h3>
-            <ul style="list-style: none">
-              <li style="border-bottom: 1px solid #222; padding: 10px 0">
-                <span class="dim">[EMPTY]</span> - 01:14
-              </li>
-              <li style="border-bottom: 1px solid #222; padding: 10px 0">
-                <span class="dim">[EMPTY]</span> - 03:17
-              </li>
-              <li
-                style="
-                  border-bottom: 1px solid #222;
-                  padding: 10px 0;
-                  color: var(--term-white);
-                "
-              >
-                <strong>SUBJECT: CORRUPTION</strong> -
-                <span class="red">07:42</span>
-              </li>
-              <li style="padding: 10px 0">
-                <span class="dim">[EMPTY]</span> - 11:03
-              </li>
-            </ul>
-          </div>
-
-          <!-- Widget: Chat Log -->
-          <div class="dash-widget">
-            <div class="threat-text">THEY ARE HERE</div>
-            <h3>Internal Comm_Log_99</h3>
-            <div class="chat-log">
-              <p><span class="dim">HARRIS:</span> "Did you hear it again?"</p>
-              <p><span class="dim">CHEN:</span> "Hear what?"</p>
-              <p>
-                <span class="dim">HARRIS:</span> "The typing. I know you
-                <span class="flicker" style="color: var(--term-white)"
-                  >observe</span
-                >d it too."
-              </p>
-              <p>
-                <span class="dim">CHEN:</span> "We're alone on this secto<span
-                  class="flicker"
-                  style="color: var(--term-white)"
-                  >r</span
-                >."
-              </p>
-            </div>
-          </div>
-
-          <!-- Widget: Calendar -->
-          <div class="dash-widget">
-            <div class="threat-text">TIME IS UP</div>
-            <h3>Calendar (May 2026)</h3>
-            <div class="cal-entry">
-              <span class="cal-text">14 - Routine Maintenance</span>
-            </div>
-            <div class="cal-entry">
-              <span class="cal-text">15 - AI Ethics Board Review</span>
-            </div>
-            <div class="cal-entry">
-              <span class="cal-text">16 - Server Diagnostics</span>
-            </div>
-            <div class="cal-entry corrupted">
-              <span class="cal-text" style="color: var(--term-white)"
-                >17 - DO NOT OPEN THE CORE</span
-              >
-            </div>
-          </div>
-
-          <div
-            class="dash-widget"
-            id="activity-widget"
-            style="position: relative"
-          >
-            <div class="threat-text">RUN</div>
-            <h3>Recent Activity Logs</h3>
-            <table
-              style="width: 100%; border-collapse: collapse; font-size: 0.9rem"
-            >
-              <tr style="border-bottom: 1px solid #333">
-                <th style="text-align: left; padding: 5px">Action</th>
-                <th style="text-align: right; padding: 5px">Status</th>
-              </tr>
-              <tr>
-                <td style="padding: 5px">NAV_REQ: Inbox</td>
-                <td style="text-align: right; color: var(--term-green)">OK</td>
-              </tr>
-              <tr>
-                <td style="padding: 5px">NAV_REQ: Projects</td>
-                <td style="text-align: right; color: var(--term-green)">OK</td>
-              </tr>
-              <tr>
-                <td style="padding: 5px">NAV_REQ: Security</td>
-                <td style="text-align: right; color: var(--term-green)">OK</td>
-              </tr>
-              <tr>
-                <td style="padding: 5px; color: var(--term-white)">
-                  NAV_REQ: Private
-                </td>
-                <td style="text-align: right; color: var(--term-red)">
-                  LOCKED
-                </td>
-              </tr>
-            </table>
-
-
-            <a
-              href="#"
-              class="ghost-file"
-              id="ghost-file"
-              style="position: absolute; bottom: 20px; right: 20px"
-              >observer_log.txt</a
-            >
-          </div>
-        </div>
+    <!-- Title bar -->
+    <div class="os-titlebar">
+      <span>CYRANET INTERNAL NETWORK — EMPLOYEE TERMINAL v4.2.1 &nbsp;|&nbsp; SESSION: E.VOSS@CYR-WS-07</span>
+      <div class="os-titlebar-right">
+        <span>SYS DATE: 1979-05-13</span>
+        <span id="sys-clock">--:--:--</span>
       </div>
     </div>
 
-    <script src="system.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script>
-    </script>
-  </body>
+    <!-- Main body -->
+    <div class="os-body">
+
+      <!-- Sidebar -->
+      <div class="os-sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">CYRANET</div>
+          <div class="sidebar-sub">Intranet Workstation v4.2</div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-group-label">MAIN DIRECTORIES</div>
+          <a href="#" class="nav-item active" id="nav-dashboard">
+            <span class="nav-icon">&#9658;</span>Dashboard
+          </a>
+          <a href="#" class="nav-item" id="nav-logs" onclick="handleNavSeq('inbox'); return false;">
+            <span class="nav-icon">&#9658;</span>Research Logs
+          </a>
+          <a href="#" class="nav-item" id="nav-messages" onclick="handleNavSeq('proj'); return false;">
+            <span class="nav-icon">&#9658;</span>Employee Messages
+          </a>
+          <a href="#" class="nav-item" id="nav-archive" onclick="handleNavSeq('sec'); return false;">
+            <span class="nav-icon">&#9658;</span>Archive Access
+          </a>
+          <a href="#" class="nav-item nav-disabled" id="nav-recovery">
+            <span class="nav-icon">&#183;</span>Recovery Nodes
+          </a>
+          <a href="#" class="nav-item nav-unlock" id="nav-deleted" onclick="handleNavSeq('priv'); return false;" style="pointer-events:none;">
+            <span class="nav-icon">&#183;</span>Deleted Files&nbsp;<span style="font-size:0.6rem;">[LOCKED]</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-status">
+          <div class="s-line">NET: <span class="s-ok">CONNECTED</span></div>
+          <div class="s-line">SEC: <span class="s-warn">DEGRADED</span></div>
+          <div class="s-line">SYS: <span class="s-ok">ACTIVE</span></div>
+          <div class="s-line" style="margin-top:8px;">NODE: CYR-WS-07</div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="os-main">
+
+        <!-- Top bar -->
+        <div class="os-topbar">
+          <div class="breadcrumb">CYRANET &rsaquo; EMPLOYEE WORKSTATION &rsaquo; E.VOSS</div>
+          <div class="topbar-right">
+            <span class="sys-label">CLEARANCE: LEVEL 4</span>
+            <div class="profile-btn" onclick="toggleProfile()" title="Dr. Elias Voss — Click to view record">EV</div>
+          </div>
+        </div>
+
+        <!-- Widgets -->
+        <div class="content-area">
+
+          <!-- System Notices -->
+          <div class="panel">
+            <div class="panel-titlebar">SYSTEM NOTICES &mdash; UNREAD (3)</div>
+            <div class="panel-body">
+              <div class="notice-item">
+                <span class="notice-date">1979-05-09</span>
+                <span class="notice-from">ADMIN</span>
+                <span class="notice-text">Scheduled server maintenance &mdash; Sector B terminals offline 02:00&ndash;04:00</span>
+              </div>
+              <div class="notice-item">
+                <span class="notice-date">1979-05-11</span>
+                <span class="notice-from">HR-DEPT</span>
+                <span class="notice-text">Annual employee review forms due end of quarter. Please submit to your department head.</span>
+              </div>
+              <div class="notice-item notice-flagged">
+                <span class="notice-date">1979-05-13</span>
+                <span class="notice-from">SYSTEM</span>
+                <span class="notice-text">*** NOTICE: Account flagged for inactive review. Contact system administrator. Ref: ERR_17</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Unsent Drafts -->
+          <div class="panel">
+            <div class="panel-titlebar">UNSENT DRAFTS (4)</div>
+            <div class="panel-body">
+              <table class="data-table">
+                <thead>
+                  <tr><th>TIME</th><th>SUBJECT</th><th>STATUS</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>01:14</td><td class="col-dim">[EMPTY]</td><td class="col-dim">&mdash;</td></tr>
+                  <tr><td>03:17</td><td class="col-dim">[EMPTY]</td><td class="col-dim">&mdash;</td></tr>
+                  <tr><td>07:42</td><td>SUBJECT: CORRUPTION</td><td class="col-warn">UNSENT</td></tr>
+                  <tr><td>11:03</td><td class="col-dim">[EMPTY]</td><td class="col-dim">&mdash;</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Comm Log -->
+          <div class="panel">
+            <div class="panel-titlebar">INTERNAL COMM LOG &mdash; SESSION 99</div>
+            <div class="panel-body">
+              <div class="comm-entry">
+                <span class="comm-user">HARRIS, T.&nbsp;&nbsp;</span>
+                <span class="comm-msg">"Did you hear it again?"</span>
+              </div>
+              <div class="comm-entry">
+                <span class="comm-user">CHEN, M.&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="comm-msg">"Hear what?"</span>
+              </div>
+              <div class="comm-entry">
+                <span class="comm-user">HARRIS, T.&nbsp;&nbsp;</span>
+                <span class="comm-msg">"The typing. I know you heard it too."</span>
+              </div>
+              <div class="comm-entry">
+                <span class="comm-user">CHEN, M.&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span class="comm-msg">"We're alone on this sector."</span>
+              </div>
+              <div class="comm-entry" style="color:var(--text-dim);font-size:0.68rem;margin-top:8px;">
+                [END OF LOG — TRANSMISSION INTERRUPTED]
+              </div>
+            </div>
+          </div>
+
+          <!-- Calendar -->
+          <div class="panel">
+            <div class="panel-titlebar">CALENDAR &mdash; MAY 1979</div>
+            <div class="panel-body">
+              <table class="data-table">
+                <thead>
+                  <tr><th>DATE</th><th>EVENT</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>14 May</td><td>Routine Maintenance &mdash; Lab B</td></tr>
+                  <tr><td>15 May</td><td>AI Ethics Board Review</td></tr>
+                  <tr><td>16 May</td><td>Server Diagnostics &mdash; Sector C</td></tr>
+                  <tr class="cal-entry corrupted">
+                    <td class="col-warn">17 May</td>
+                    <td class="col-warn">DO NOT OPEN THE CORE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Activity Log (full width) -->
+          <div class="panel panel-wide" id="activity-widget">
+            <div class="panel-titlebar">
+              RECENT ACTIVITY LOG &mdash; E.VOSS@CYR-WS-07
+              <span class="col-warn" style="font-size:0.62rem;">[ LAST SESSION: 1979-05-13 ]</span>
+            </div>
+            <div class="panel-body">
+              <table class="data-table">
+                <thead>
+                  <tr><th>TIMESTAMP</th><th>ACTION</th><th>RESOURCE</th><th>RESULT</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>1979-05-13 08:14</td><td>NAV_REQ</td><td>/inbox</td><td class="col-ok">200 OK</td></tr>
+                  <tr><td>1979-05-13 08:17</td><td>NAV_REQ</td><td>/projects</td><td class="col-ok">200 OK</td></tr>
+                  <tr><td>1979-05-13 08:22</td><td>NAV_REQ</td><td>/security</td><td class="col-ok">200 OK</td></tr>
+                  <tr><td>1979-05-13 08:23</td><td>NAV_REQ</td><td>/private</td><td class="col-err">403 LOCKED</td></tr>
+                  <tr><td>1979-05-13 18:30</td><td>LOGOFF</td><td>WS-07</td><td class="col-ok">OK</td></tr>
+                  <tr>
+                    <td class="col-dim" style="font-size:0.65rem;" colspan="4">
+                      &mdash;&mdash; NO FURTHER SESSIONS RECORDED &mdash;&mdash;
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <a href="#" class="ghost-file" id="ghost-file">observer_log.txt</a>
+            </div>
+          </div>
+
+        </div><!-- /content-area -->
+      </div><!-- /os-main -->
+    </div><!-- /os-body -->
+  </div><!-- /os-window -->
+
+  <!-- Profile Panel -->
+  <div class="profile-panel" id="profile-panel">
+    <div class="profile-panel-header">
+      <span>EMPLOYEE RECORD &mdash; CYR-0047</span>
+      <button class="profile-close" onclick="toggleProfile()">[ CLOSE ]</button>
+    </div>
+    <div class="profile-panel-body">
+
+      <div class="voss-photo-wrap">
+        <img id="voss-img" src="voss_photo.png" alt="Dr. Elias Voss — Employee Photo" />
+      </div>
+      <div class="voss-photo-caption">EMPLOYEE ID PHOTO &mdash; 1974 &mdash; FILE: CYR-0047</div>
+
+      <table class="profile-table">
+        <tr><td class="pf-label">NAME:</td><td>Dr. Elias Voss</td></tr>
+        <tr><td class="pf-label">EMP. ID:</td><td>CYR-0047</td></tr>
+        <tr><td class="pf-label">DEPT:</td><td>Behavioral Systems Lab</td></tr>
+        <tr><td class="pf-label">CLEARANCE:</td><td>LEVEL 5 (SUSPENDED)</td></tr>
+        <tr><td class="pf-label">STATUS:</td><td class="col-err">TERMINATED / ARCHIVED</td></tr>
+        <tr><td class="pf-label">HIRED:</td><td>1971-03-14</td></tr>
+        <tr><td class="pf-label">LAST LOGIN:</td><td>1979-05-13 18:30</td></tr>
+        <tr><td class="pf-label">RECORDS:</td><td class="col-warn">3 FILES DELETED</td></tr>
+      </table>
+
+      <div class="profile-section-label">PSYCH EVAL TAGS &mdash; Q4 1978</div>
+      <div class="profile-tags">
+        <span class="ptag">PARANOIA</span>
+        <span class="ptag">OBSESSION</span>
+        <span class="ptag">ISOLATION</span>
+        <span class="ptag ptag-deleted">[RECORD DELETED]</span>
+      </div>
+
+      <div class="profile-section-label">SUPERVISOR NOTES</div>
+      <div class="profile-notes">
+        <p>Subject exhibited increasing erratic behavior in final weeks of employment.
+           Access to NEXUS terminals restricted per directive
+           <span class="redacted-inline">&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</span>.</p>
+        <p>Final assessment filed <span class="col-warn">1979-05-14</span>.
+           Pending administrator review. Contact HR for further details.</p>
+        <p class="note-corrupted">&#9608;&#9608;&#9608;&#9608;&#9608; &#9608;&#9608;&#9608;&#9608; not &#9608;&#9608;&#9608;&#9608; they &#9608;&#9608;&#9608;&#9608;&#9608;&#9608;&#9608;</p>
+      </div>
+
+      <button id="btn-dossier" class="profile-dossier-btn">VIEW FULL DOSSIER &rarr;</button>
+
+    </div>
+  </div>
+
+  <script src="system.js"></script>
+  <script src="js/dashboard.js"></script>
+
+</body>
 </html>

@@ -298,7 +298,6 @@ button:hover {
     color: var(--bg-color);
 }
 
-/* Typing Cursor */
 .cursor {
     display: inline-block;
     width: 10px;
@@ -435,7 +434,6 @@ button:hover {
     }
 }
 
-/* System Messages */
 .sys-msg {
     margin: 10px 0;
     padding: 10px;
@@ -450,9 +448,6 @@ button:hover {
     text-shadow: var(--glow-red);
 }
 
-/* Specific Layouts */
-
-/* Intranet Styles */
 .intranet-header {
     border-bottom: 2px solid var(--term-dim);
     padding-bottom: 1rem;
@@ -718,7 +713,6 @@ button:hover {
     opacity: 0.3;
 }
 
-/* Dashboard Redesign */
 .dash-layout {
     display: flex;
     height: 100vh;
