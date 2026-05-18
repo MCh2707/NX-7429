@@ -1,42 +1,30 @@
-# NX-7429
+# NX-7429 — v2.0
 
-Check out my new website project I made 👀
+The second major version of the project focused heavily on atmosphere, immersion and system design.
 
-A psychological horror / ARG-style web experience inspired by: analog horror, abandoned systems, retro terminals, secret archives, AI experiments, creepy investigation games..
+## What's New in v2.0
 
-The site is built to feel like you're exploring a forgotten research network connected to a mysterious AI project called **NEXUS**.
+- Completely redesigned UI and page layouts
+- Improved terminal experience and transitions
+- Reworked employee dashboard
+- New archive system with classified documents and research logs
+- Added more interconnected puzzles and hidden clues
+- Expanded story and lore surrounding the NX-7429 project
+- Added glitch effects, CRT-style visuals and ambient interactions
+- Improved overall atmosphere and immersion
+- Added new interactive pages and hidden details
+- Better navigation and progression flow
 
-## Story
+## Preview
 
-You accidentally discover a hidden research network connected to an abandoned AI project known only as **NEXUS**.
-At first, it looks like a broken corporate system… old files, corrupted logs, forgotten employee accounts.
-But the deeper you go, the more the system starts reacting to you.
-Later you will uncover it piece by piece through archives, terminals, and hidden fragments of data, and some messages feel like they are written for you specifically.
+![Preview](images/preview.png)
 
-The more you investigate, the less certain you become about what really happened inside the facility…
-## Screenshots
+## Live Website
 
-![Recording Page](screens/record.png)
+https://mch2707.github.io/NX-7429/
 
-![Archive Page](screens/database.png)
+## Dev Note
 
-## Features
+Some parts of the original terminal atmosphere changed during the redesign process.
 
-- Interactive terminal system
-- Hidden puzzles and secret pages
-- Glitch effects & VHS atmosphere
-- Fake government databases
-- Hidden clues in ###### ####
-- Dynamic ambient audio
-- Psychological horror elements
-- 
-
-
-## Tech Used:
-Vanilla HTML/CSS/JS
-
-Web Audio API
-
-## Small Hint 👀
-
-Some things are hidden where you least expect them.
+I'm currently working on refining the final sections and restoring parts of the older terminal aesthetic for future updates.
