@@ -35,7 +35,7 @@ The more you investigate, the less certain you become about what really happened
 ## Tech Used:
 Vanilla HTML/CSS/JS
 
-Web Audio API
+Web Audio API and Ai generated imgs
 
 ## Small Hint 👀
 
